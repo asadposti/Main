@@ -10,9 +10,11 @@ import javax.jws.WebService;
 import configuration.ConfigXML;
 import dataAccess.DataAccess;
 import domain.Question;
+import domain.User;
 import domain.Event;
 import exceptions.EventFinished;
 import exceptions.QuestionAlreadyExist;
+import exceptions.invalidID;
 
 /**
  * It implements the business logic as a web service.
@@ -28,8 +30,7 @@ public class BLFacadeImplementation  implements BLFacade {
 			DataAccess dbManager=new DataAccess(c.getDataBaseOpenMode().equals("initialize"));
 			dbManager.initializeDB();
 			dbManager.close();
-			}
-		
+			}	
 	}
 	
 
@@ -90,8 +91,42 @@ public class BLFacadeImplementation  implements BLFacade {
 		return dates;
 	}
 	
+	/**
+	 * This method registers a new user.
+	 * 
+	 * @param iD				ID of the new user.
+	 * @param password			password of the new user.
+	 * @param name				name of the new user.
+	 * @param surname			surname of the new user.
+	 * @param email				email of the new user.
+	 * @param isAdmin			whether this user has admin. privileges or not.
+	 * 
+	 * @return					the newly created User object.
+	 * @throws invalidID		exception thrown when there is a pre existing user with this ID in the database.
+	 */
+	@WebMethod
+	public User registerUser(String iD, String password, String name, String surname, String email, boolean isAdmin) throws invalidID{
+	    DataAccess dBManager=new DataAccess();
+	    User u = dBManager.registerUser(iD, password, name, surname, email, isAdmin);
+	    dBManager.close();	
+	    return u;
+	}
 	
-	
+	/**
+	 * This methods checks the validity of the credentials (id / password) inputed upon login.
+	 * @param ID			ID of the presumed user.
+	 * @param pw			password of the presumed user.
+	 * 
+	 * @return				boolean indicating if there exists a user in the database with these credentials.
+	 * @throws invalidID	exception thrown when no user entity with the input ID exists in the database.
+	 */
+	@WebMethod
+	public boolean checkCredentials(String ID, String password) throws invalidID{
+		DataAccess dBManager=new DataAccess();
+		boolean valid = dBManager.checkCredentials(ID, password);
+	    dBManager.close();	
+	    return valid;
+	}
 
 	/**
 	 * This method invokes the data access to initialize the database with some events and questions.

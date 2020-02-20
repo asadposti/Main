@@ -9,9 +9,11 @@ import java.util.Date;
 
 //import domain.Booking;
 import domain.Question;
+import domain.User;
 import domain.Event;
 import exceptions.EventFinished;
 import exceptions.QuestionAlreadyExist;
+import exceptions.invalidID;
 
 import javax.jws.WebMethod;
 import javax.jws.WebService;
@@ -51,6 +53,31 @@ public interface BLFacade  {
 	 * @return collection of dates
 	 */
 	@WebMethod public Vector<Date> getEventsMonth(Date date);
+	
+	/**
+	 * This method registers a new user.
+	 * 
+	 * @param iD				ID of the new user.
+	 * @param password			password of the new user.
+	 * @param name				name of the new user.
+	 * @param surname			surname of the new user.
+	 * @param email				email of the new user.
+	 * @param isAdmin			whether this user has admin. privileges or not.
+	 * 
+	 * @return					the newly created User object.
+	 * @throws invalidID		exception thrown when there is a pre existing user with this ID in the database.
+	 */
+	@WebMethod public User registerUser(String iD, String password, String name, String surname, String email, boolean isAdmin) throws invalidID;
+
+	/**
+	 * This methods checks the validity of the credentials (id / password) inputed upon login.
+	 * @param ID			ID of the presumed user.
+	 * @param pw			password of the presumed user.
+	 * 
+	 * @return				boolean indicating if there exists a user in the database with these credentials.
+	 * @throws invalidID	exception thrown when no user entity with the input ID exists in the database.
+	 */
+	@WebMethod public boolean checkCredentials(String ID, String password) throws invalidID;
 	
 	/**
 	 * This method calls the data access to initialize the database with some events and questions.

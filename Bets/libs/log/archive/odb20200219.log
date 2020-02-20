@@ -21,3 +21,26 @@ New type java.util.Vector<domain.Question>
 [2020-02-19 17:18:50 #7 type.registry] 
 New type java.util.Vector<java.lang.Object>
 
+------------------------------------------------------------------------------------------------------------------------
+
+[2020-02-19 17:59:08 #1 store] 
+Database 'C:\Users\Usuario\git\betnruin\Bets\resources\bets.temp' is opened by 5716@DESKTOP-00OS7EM
+
+[2020-02-19 17:59:08 #2 type.registry] 
+New type domain.Question
+
+[2020-02-19 17:59:08 #3 type] 
+Type domain.Question is not enhanced.
+
+[2020-02-19 17:59:08 #4 type.registry] 
+New type domain.Event
+
+[2020-02-19 17:59:08 #5 type] 
+Type domain.Event is not enhanced.
+
+[2020-02-19 17:59:08 #6 type.registry] 
+New type java.util.Vector<domain.Question>
+
+[2020-02-19 17:59:08 #7 type.registry] 
+New type java.util.Vector<java.lang.Object>
+

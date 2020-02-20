@@ -1,0 +1,23 @@
+------------------------------------------------------------------------------------------------------------------------
+
+[2020-02-20 16:47:21 #1 store] 
+Database 'C:\Users\Usuario\git\betnruin\Bets\resources\bets.temp' is opened by 15216@DESKTOP-00OS7EM
+
+[2020-02-20 16:47:21 #2 type.registry] 
+New type domain.Question
+
+[2020-02-20 16:47:21 #3 type] 
+Type domain.Question is not enhanced.
+
+[2020-02-20 16:47:21 #4 type.registry] 
+New type domain.Event
+
+[2020-02-20 16:47:21 #5 type] 
+Type domain.Event is not enhanced.
+
+[2020-02-20 16:47:21 #6 type.registry] 
+New type java.util.Vector<domain.Question>
+
+[2020-02-20 16:47:21 #7 type.registry] 
+New type java.util.Vector<java.lang.Object>
+
