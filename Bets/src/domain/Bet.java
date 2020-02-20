@@ -20,16 +20,15 @@ public class Bet {
 	
 	@Id 
 	@XmlJavaTypeAdapter(IntegerAdapter.class)
-	@GeneratedValue
 	private Question question;
 	@XmlIDREF
-	private User better;
+	private User bettor;
 	private float amount;
 	
 	public Bet(Question question, User better, float amount) {
 		super();
 		this.question = question;
-		this.better = better;
+		this.bettor = better;
 		this.amount = amount;
 	}
 
@@ -41,12 +40,12 @@ public class Bet {
 		this.question = question;
 	}
 
-	public User getBetter() {
-		return better;
+	public User getBettir() {
+		return bettor;
 	}
 
-	public void setBetter(User better) {
-		this.better = better;
+	public void setBettor(User bettor) {
+		this.bettor = bettor;
 	}
 
 	public float getAmount() {

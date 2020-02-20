@@ -27,7 +27,7 @@ public class User {
 
 	@XmlID
 	@XmlJavaTypeAdapter(IntegerAdapter.class)
-	@Id @GeneratedValue
+	@Id
 	private String ID;
 	private String password;
 	private String name;
@@ -48,7 +48,7 @@ public class User {
 		this.email = email;
 		this.isAdmin = isAdmin;
 		this.bets = new ArrayList<Bet>();
-		this.cash = 0;
+		this.cash = 50;         //placeholder value of 50 euros for testing purposes before credit cards etc are implemented.
 	}
 	
 
@@ -115,8 +115,8 @@ public class User {
 		this.cash -= amount;
 	}
 
-	public void addCash(float inc) {
-		this.cash += inc;
+	public void addCash(float amount) {
+		this.cash += amount;
 	}
 
 }

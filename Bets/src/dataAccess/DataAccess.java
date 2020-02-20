@@ -140,6 +140,8 @@ public class DataAccess  {
 				
 			}
 			
+			User u = new User("aaa", "bbb", "Julen", "Urroz", "testemail@gmail.com", true);
+			db.persist(u);
 			
 			db.persist(q1);
 			db.persist(q2);
