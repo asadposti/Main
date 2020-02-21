@@ -1,0 +1,82 @@
+------------------------------------------------------------------------------------------------------------------------
+
+[2020-02-21 12:23:33 #1 store] 
+Database '/home/jonander/git/Sprint_1/Bets/resources/bets.temp' is opened by 3384@pop-os
+
+[2020-02-21 12:23:34 #2 type.registry] 
+New type domain.User
+
+[2020-02-21 12:23:34 #3 type] 
+Type domain.User is not enhanced.
+
+[2020-02-21 12:23:34 #4 type.registry] 
+New type domain.Bet
+
+[2020-02-21 12:23:34 #5 type.registry] 
+New type java.util.ArrayList<domain.Bet>
+
+[2020-02-21 12:23:34 #6 type] 
+Type domain.Bet is not enhanced.
+
+[2020-02-21 12:23:34 #7 type.registry] 
+New type domain.Question
+
+[2020-02-21 12:23:34 #8 type] 
+Type domain.Question is not enhanced.
+
+[2020-02-21 12:23:34 #9 type.registry] 
+New type domain.Event
+
+[2020-02-21 12:23:34 #10 type] 
+Type domain.Event is not enhanced.
+
+[2020-02-21 12:23:34 #11 type.registry] 
+New type java.util.Vector<domain.Question>
+
+[2020-02-21 12:23:34 #12 type.registry] 
+New type java.util.ArrayList<java.lang.Object>
+
+[2020-02-21 12:23:34 #13 type.registry] 
+New type java.util.Vector<java.lang.Object>
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2020-02-21 12:39:47 #1 store] 
+Database '/home/jonander/git/Sprint_1/Bets/resources/bets.temp' is opened by 4616@pop-os
+
+[2020-02-21 12:39:47 #2 type.registry] 
+New type domain.User
+
+[2020-02-21 12:39:47 #3 type] 
+Type domain.User is not enhanced.
+
+[2020-02-21 12:39:47 #4 type.registry] 
+New type domain.Bet
+
+[2020-02-21 12:39:47 #5 type.registry] 
+New type java.util.ArrayList<domain.Bet>
+
+[2020-02-21 12:39:47 #6 type] 
+Type domain.Bet is not enhanced.
+
+[2020-02-21 12:39:47 #7 type.registry] 
+New type domain.Question
+
+[2020-02-21 12:39:47 #8 type] 
+Type domain.Question is not enhanced.
+
+[2020-02-21 12:39:47 #9 type.registry] 
+New type domain.Event
+
+[2020-02-21 12:39:47 #10 type] 
+Type domain.Event is not enhanced.
+
+[2020-02-21 12:39:47 #11 type.registry] 
+New type java.util.Vector<domain.Question>
+
+[2020-02-21 12:39:47 #12 type.registry] 
+New type java.util.ArrayList<java.lang.Object>
+
+[2020-02-21 12:39:47 #13 type.registry] 
+New type java.util.Vector<java.lang.Object>
+
