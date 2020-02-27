@@ -9,17 +9,24 @@ import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
+
+import businessLogic.BLFacade;
+import exceptions.invalidID;
+
 import javax.swing.JLabel;
 import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import javax.swing.JPasswordField;
 
 public class LoginGUI extends JFrame {
 
 
 	private JTextField usernameTextField;
-	private JTextField passwordTextField;
 	private JTextField emailTextField;
 	private JTextField nameTextField;
 	private JTextField surnameTextField;
+	private JPasswordField passwordField;
 	/**
 	 * Launch the application.
 	 */
@@ -40,7 +47,7 @@ public class LoginGUI extends JFrame {
 	 * Create the frame.
 	 */
 	public LoginGUI() {
-		setBounds(100, 100, 400,350);
+		setBounds(100, 100, 250,350);
 		
 		JLabel lblUsername = new JLabel("Username");
 		
@@ -55,9 +62,6 @@ public class LoginGUI extends JFrame {
 		usernameTextField = new JTextField();
 		usernameTextField.setColumns(10);
 		
-		passwordTextField = new JTextField();
-		passwordTextField.setColumns(10);
-		
 		emailTextField = new JTextField();
 		emailTextField.setColumns(10);
 		
@@ -67,15 +71,45 @@ public class LoginGUI extends JFrame {
 		surnameTextField = new JTextField();
 		surnameTextField.setColumns(10);
 		
+		passwordField = new JPasswordField();
+		
 		JButton registerButton = new JButton("Register");
+		registerButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				String username = usernameTextField.getText();
+				String pass = new String(passwordField.getPassword());
+				String name = nameTextField.getText();
+				String surname = surnameTextField.getText();
+				String email = emailTextField.getText();
+				BLFacade facade = MainGUI.getBusinessLogic();
+				if (username.equals("") || pass.equals("") || name.equals("") || surname.equals("") || email.equals("")) {
+					registerButton.setText("Fill all areas");
+				}
+				try {
+					facade.registerUser(username, pass, name, surname, email, false);
+					LoginGUI.super.dispose();
+				
+				} catch (invalidID e) {
+					// TODO Auto-generated catch block
+					registerButton.setText(e.getMessage());
+				}
+				
+			}
+		});
+		
+		
 		GroupLayout groupLayout = new GroupLayout(getContentPane());
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
-					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+					.addContainerGap()
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 						.addGroup(groupLayout.createSequentialGroup()
-							.addContainerGap()
-							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+							.addGap(12)
+							.addComponent(registerButton, GroupLayout.DEFAULT_SIZE, 194, Short.MAX_VALUE)
+							.addGap(182))
+						.addGroup(groupLayout.createSequentialGroup()
+							.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
 								.addGroup(groupLayout.createSequentialGroup()
 									.addComponent(lblUsername, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 									.addGap(316))
@@ -88,20 +122,16 @@ public class LoginGUI extends JFrame {
 								.addGroup(groupLayout.createSequentialGroup()
 									.addComponent(lblEmail, GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
 									.addGap(312))
-								.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
+								.addGroup(groupLayout.createSequentialGroup()
 									.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
 										.addComponent(surnameTextField, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 177, Short.MAX_VALUE)
 										.addComponent(nameTextField, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 177, Short.MAX_VALUE)
 										.addComponent(emailTextField, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 177, Short.MAX_VALUE)
 										.addComponent(usernameTextField, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 177, Short.MAX_VALUE)
-										.addComponent(passwordTextField, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 177, Short.MAX_VALUE)
-										.addComponent(lblSurname, GroupLayout.DEFAULT_SIZE, 177, Short.MAX_VALUE))
-									.addGap(211))))
-						.addGroup(Alignment.LEADING, groupLayout.createSequentialGroup()
-							.addGap(124)
-							.addComponent(registerButton, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-							.addGap(182)))
-					.addGap(0))
+										.addComponent(lblSurname, GroupLayout.DEFAULT_SIZE, 177, Short.MAX_VALUE)
+										.addComponent(passwordField, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 177, Short.MAX_VALUE))
+									.addGap(211)))
+							.addGap(0))))
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.TRAILING)
@@ -113,8 +143,8 @@ public class LoginGUI extends JFrame {
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(lblPassword, GroupLayout.DEFAULT_SIZE, 15, Short.MAX_VALUE)
 					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(passwordTextField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(passwordField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.UNRELATED)
 					.addComponent(lblEmail, GroupLayout.DEFAULT_SIZE, 15, Short.MAX_VALUE)
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(emailTextField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
@@ -126,9 +156,9 @@ public class LoginGUI extends JFrame {
 					.addComponent(lblSurname, GroupLayout.DEFAULT_SIZE, 15, Short.MAX_VALUE)
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(surnameTextField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-					.addGap(18)
+					.addPreferredGap(ComponentPlacement.UNRELATED)
 					.addComponent(registerButton)
-					.addGap(6))
+					.addContainerGap())
 		);
 		getContentPane().setLayout(groupLayout);
 		

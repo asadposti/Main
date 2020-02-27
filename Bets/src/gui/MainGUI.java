@@ -24,19 +24,20 @@ import java.awt.event.ActionEvent;
 
 
 public class MainGUI extends JFrame {
-	
+
 	private static final long serialVersionUID = 1L;
 
 	private JPanel jContentPane = null;
 	private JButton jButtonCreateQuery = null;
 	private JButton jButtonQueryQueries = null;
+	private JButton  btnLogIn = null;
+	private JButton  btnRegister = null; 
+	private static BLFacade appFacadeInterface;
 
-    private static BLFacade appFacadeInterface;
-	
 	public static BLFacade getBusinessLogic(){
 		return appFacadeInterface;
 	}
-	
+
 	public static void setBussinessLogic (BLFacade afi){
 		appFacadeInterface=afi;
 	}
@@ -46,13 +47,13 @@ public class MainGUI extends JFrame {
 	private JRadioButton rdbtnNewRadioButton_2;
 	private JPanel panel;
 	private final ButtonGroup buttonGroup = new ButtonGroup();
-	
+
 	/**
 	 * This is the default constructor
 	 */
 	public MainGUI() {
 		super();
-		
+
 		addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowClosing(WindowEvent e) {
@@ -69,8 +70,8 @@ public class MainGUI extends JFrame {
 		initialize();
 		//this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
-	
-	
+
+
 
 	/**
 	 * This method initializes this
@@ -110,19 +111,23 @@ public class MainGUI extends JFrame {
 	private JButton getBoton2() {
 		if (jButtonCreateQuery == null) {
 			jButtonCreateQuery = new JButton();
-			jButtonCreateQuery.setText(ResourceBundle.getBundle("Etiquetas").getString("CreateQuery"));
-			jButtonCreateQuery.addActionListener(new java.awt.event.ActionListener() {
-				public void actionPerformed(java.awt.event.ActionEvent e) {
-					BLFacade facade=MainGUI.getBusinessLogic();
-					//Vector<Event> events=facade.getAllEvents();
-					JFrame a = new CreateQuestionGUI(new Vector<Event>());
-					a.setVisible(true);
-				}
-			});
+			jButtonCreateQuery.setEnabled(false);
+			if (jButtonCreateQuery.isEnabled()) {
+				jButtonCreateQuery.setText(ResourceBundle.getBundle("Etiquetas").getString("CreateQuery"));
+				jButtonCreateQuery.addActionListener(new java.awt.event.ActionListener() {
+					public void actionPerformed(java.awt.event.ActionEvent e) {
+						BLFacade facade=MainGUI.getBusinessLogic();
+						//Vector<Event> events=facade.getAllEvents();
+						JFrame a = new CreateQuestionGUI(new Vector<Event>());
+						a.setVisible(true);
+					}
+				});
+			}
+
 		}
 		return jButtonCreateQuery;
 	}
-	
+
 	/**
 	 * This method initializes boton2
 	 * 
@@ -142,7 +147,7 @@ public class MainGUI extends JFrame {
 		}
 		return jButtonQueryQueries;
 	}
-	
+
 
 	private JLabel getLblNewLabel() {
 		if (jLabelSelectOption == null) {
@@ -193,22 +198,50 @@ public class MainGUI extends JFrame {
 		}
 		return rdbtnNewRadioButton_2;
 	}
+	private JButton getBtnLogIn() {
+		if (btnLogIn == null) {
+			btnLogIn = new JButton(ResourceBundle.getBundle("Etiquetas").getString("MainGUI.btnLogIn.text")); //$NON-NLS-1$ //$NON-NLS-2$
+			btnLogIn.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					JFrame user = new UserLoginGUI();
+					user.setVisible(true);
+				}
+			});
+			btnLogIn.setBounds(36, 36, 117, 25);
+		}
+		return btnLogIn;
+	}
+	private JButton getBtnRegister() {
+		if (btnRegister == null) {
+			btnRegister = new JButton(ResourceBundle.getBundle("Etiquetas").getString("MainGUI.btnRegister.text")); //$NON-NLS-1$ //$NON-NLS-2$
+			btnRegister.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					JFrame login = new LoginGUI();
+					login.setVisible(true);
+				}
+			});
+			btnRegister.setBounds(348, 36, 117, 25);
+		}
+		return btnRegister;
+	}
 	private JPanel getPanel() {
 		if (panel == null) {
 			panel = new JPanel();
 			panel.add(getRdbtnNewRadioButton_1());
 			panel.add(getRdbtnNewRadioButton_2());
 			panel.add(getRdbtnNewRadioButton());
+			panel.add(getBtnLogIn());
+			panel.add(getBtnRegister());
 		}
 		return panel;
 	}
-	
+
 	private void redibujar() {
 		jLabelSelectOption.setText(ResourceBundle.getBundle("Etiquetas").getString("SelectOption"));
 		jButtonQueryQueries.setText(ResourceBundle.getBundle("Etiquetas").getString("QueryQueries"));
 		jButtonCreateQuery.setText(ResourceBundle.getBundle("Etiquetas").getString("CreateQuery"));
 		this.setTitle(ResourceBundle.getBundle("Etiquetas").getString("MainTitle"));
 	}
-	
+
 } // @jve:decl-index=0:visual-constraint="0,0"
 
