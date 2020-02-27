@@ -198,6 +198,12 @@ public class MainGUI extends JFrame {
 		}
 		return rdbtnNewRadioButton_2;
 	}
+	public  void hideLogInRegister() {
+		btnLogIn.setEnabled(false);
+		btnLogIn.setVisible(false);
+		btnRegister.setEnabled(false);
+		btnRegister.setVisible(false);
+	}
 	private JButton getBtnLogIn() {
 		if (btnLogIn == null) {
 			btnLogIn = new JButton(ResourceBundle.getBundle("Etiquetas").getString("MainGUI.btnLogIn.text")); //$NON-NLS-1$ //$NON-NLS-2$
@@ -205,6 +211,7 @@ public class MainGUI extends JFrame {
 				public void actionPerformed(ActionEvent arg0) {
 					JFrame user = new UserLoginGUI();
 					user.setVisible(true);
+					MainGUI.super.dispose();
 				}
 			});
 			btnLogIn.setBounds(36, 36, 117, 25);
@@ -218,6 +225,7 @@ public class MainGUI extends JFrame {
 				public void actionPerformed(ActionEvent arg0) {
 					JFrame login = new LoginGUI();
 					login.setVisible(true);
+					MainGUI.super.dispose();
 				}
 			});
 			btnRegister.setBounds(348, 36, 117, 25);

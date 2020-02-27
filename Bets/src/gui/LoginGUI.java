@@ -87,6 +87,9 @@ public class LoginGUI extends JFrame {
 				}
 				try {
 					facade.registerUser(username, pass, name, surname, email, false);
+					JFrame m = new MainGUI();
+					((MainGUI) m).hideLogInRegister();
+					m.setVisible(true);
 					LoginGUI.super.dispose();
 				
 				} catch (invalidID e) {

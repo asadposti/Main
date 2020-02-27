@@ -1720,3 +1720,290 @@ New type java.util.ArrayList<java.lang.Object>
 [2020-02-27 15:27:19 #13 type.registry] 
 New type java.util.Vector<java.lang.Object>
 
+------------------------------------------------------------------------------------------------------------------------
+
+[2020-02-27 15:37:43 #1 store] 
+Database '/home/jonander/git/Sprint_1/Bets/resources/bets.temp' is opened by 9673@pop-os
+
+[2020-02-27 15:37:43 #2 type.registry] 
+New type domain.User
+
+[2020-02-27 15:37:43 #3 type] 
+Type domain.User is not enhanced.
+
+[2020-02-27 15:37:43 #4 type.registry] 
+New type domain.Bet
+
+[2020-02-27 15:37:43 #5 type.registry] 
+New type java.util.ArrayList<domain.Bet>
+
+[2020-02-27 15:37:43 #6 type] 
+Type domain.Bet is not enhanced.
+
+[2020-02-27 15:37:43 #7 type.registry] 
+New type domain.Question
+
+[2020-02-27 15:37:43 #8 type] 
+Type domain.Question is not enhanced.
+
+[2020-02-27 15:37:43 #9 type.registry] 
+New type domain.Event
+
+[2020-02-27 15:37:43 #10 type] 
+Type domain.Event is not enhanced.
+
+[2020-02-27 15:37:43 #11 type.registry] 
+New type java.util.Vector<domain.Question>
+
+[2020-02-27 15:37:43 #12 type.registry] 
+New type java.util.ArrayList<java.lang.Object>
+
+[2020-02-27 15:37:43 #13 type.registry] 
+New type java.util.Vector<java.lang.Object>
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2020-02-27 15:38:56 #1 store] 
+Database '/home/jonander/git/Sprint_1/Bets/resources/bets.temp' is opened by 9802@pop-os
+
+[2020-02-27 15:38:56 #2 type.registry] 
+New type domain.User
+
+[2020-02-27 15:38:56 #3 type] 
+Type domain.User is not enhanced.
+
+[2020-02-27 15:38:56 #4 type.registry] 
+New type domain.Bet
+
+[2020-02-27 15:38:56 #5 type.registry] 
+New type java.util.ArrayList<domain.Bet>
+
+[2020-02-27 15:38:56 #6 type] 
+Type domain.Bet is not enhanced.
+
+[2020-02-27 15:38:56 #7 type.registry] 
+New type domain.Question
+
+[2020-02-27 15:38:56 #8 type] 
+Type domain.Question is not enhanced.
+
+[2020-02-27 15:38:56 #9 type.registry] 
+New type domain.Event
+
+[2020-02-27 15:38:56 #10 type] 
+Type domain.Event is not enhanced.
+
+[2020-02-27 15:38:56 #11 type.registry] 
+New type java.util.Vector<domain.Question>
+
+[2020-02-27 15:38:56 #12 type.registry] 
+New type java.util.ArrayList<java.lang.Object>
+
+[2020-02-27 15:38:56 #13 type.registry] 
+New type java.util.Vector<java.lang.Object>
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2020-02-27 15:40:41 #1 store] 
+Database '/home/jonander/git/Sprint_1/Bets/resources/bets.temp' is opened by 10272@pop-os
+
+[2020-02-27 15:40:42 #2 type.registry] 
+New type domain.User
+
+[2020-02-27 15:40:42 #3 type] 
+Type domain.User is not enhanced.
+
+[2020-02-27 15:40:42 #4 type.registry] 
+New type domain.Bet
+
+[2020-02-27 15:40:42 #5 type.registry] 
+New type java.util.ArrayList<domain.Bet>
+
+[2020-02-27 15:40:42 #6 type] 
+Type domain.Bet is not enhanced.
+
+[2020-02-27 15:40:42 #7 type.registry] 
+New type domain.Question
+
+[2020-02-27 15:40:42 #8 type] 
+Type domain.Question is not enhanced.
+
+[2020-02-27 15:40:42 #9 type.registry] 
+New type domain.Event
+
+[2020-02-27 15:40:42 #10 type] 
+Type domain.Event is not enhanced.
+
+[2020-02-27 15:40:42 #11 type.registry] 
+New type java.util.Vector<domain.Question>
+
+[2020-02-27 15:40:42 #12 type.registry] 
+New type java.util.ArrayList<java.lang.Object>
+
+[2020-02-27 15:40:42 #13 type.registry] 
+New type java.util.Vector<java.lang.Object>
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2020-02-27 15:43:35 #1 store] 
+Database '/home/jonander/git/Sprint_1/Bets/resources/bets.temp' is opened by 10707@pop-os
+
+[2020-02-27 15:43:35 #2 type.registry] 
+New type domain.User
+
+[2020-02-27 15:43:35 #3 type] 
+Type domain.User is not enhanced.
+
+[2020-02-27 15:43:35 #4 type.registry] 
+New type domain.Bet
+
+[2020-02-27 15:43:35 #5 type.registry] 
+New type java.util.ArrayList<domain.Bet>
+
+[2020-02-27 15:43:35 #6 type] 
+Type domain.Bet is not enhanced.
+
+[2020-02-27 15:43:35 #7 type.registry] 
+New type domain.Question
+
+[2020-02-27 15:43:35 #8 type] 
+Type domain.Question is not enhanced.
+
+[2020-02-27 15:43:35 #9 type.registry] 
+New type domain.Event
+
+[2020-02-27 15:43:35 #10 type] 
+Type domain.Event is not enhanced.
+
+[2020-02-27 15:43:35 #11 type.registry] 
+New type java.util.Vector<domain.Question>
+
+[2020-02-27 15:43:35 #12 type.registry] 
+New type java.util.ArrayList<java.lang.Object>
+
+[2020-02-27 15:43:35 #13 type.registry] 
+New type java.util.Vector<java.lang.Object>
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2020-02-27 15:44:32 #1 store] 
+Database '/home/jonander/git/Sprint_1/Bets/resources/bets.temp' is opened by 11206@pop-os
+
+[2020-02-27 15:44:32 #2 type.registry] 
+New type domain.User
+
+[2020-02-27 15:44:32 #3 type] 
+Type domain.User is not enhanced.
+
+[2020-02-27 15:44:32 #4 type.registry] 
+New type domain.Bet
+
+[2020-02-27 15:44:32 #5 type.registry] 
+New type java.util.ArrayList<domain.Bet>
+
+[2020-02-27 15:44:32 #6 type] 
+Type domain.Bet is not enhanced.
+
+[2020-02-27 15:44:32 #7 type.registry] 
+New type domain.Question
+
+[2020-02-27 15:44:32 #8 type] 
+Type domain.Question is not enhanced.
+
+[2020-02-27 15:44:32 #9 type.registry] 
+New type domain.Event
+
+[2020-02-27 15:44:32 #10 type] 
+Type domain.Event is not enhanced.
+
+[2020-02-27 15:44:32 #11 type.registry] 
+New type java.util.Vector<domain.Question>
+
+[2020-02-27 15:44:32 #12 type.registry] 
+New type java.util.ArrayList<java.lang.Object>
+
+[2020-02-27 15:44:32 #13 type.registry] 
+New type java.util.Vector<java.lang.Object>
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2020-02-27 15:45:25 #1 store] 
+Database '/home/jonander/git/Sprint_1/Bets/resources/bets.temp' is opened by 11520@pop-os
+
+[2020-02-27 15:45:25 #2 type.registry] 
+New type domain.User
+
+[2020-02-27 15:45:25 #3 type] 
+Type domain.User is not enhanced.
+
+[2020-02-27 15:45:25 #4 type.registry] 
+New type domain.Bet
+
+[2020-02-27 15:45:25 #5 type.registry] 
+New type java.util.ArrayList<domain.Bet>
+
+[2020-02-27 15:45:25 #6 type] 
+Type domain.Bet is not enhanced.
+
+[2020-02-27 15:45:25 #7 type.registry] 
+New type domain.Question
+
+[2020-02-27 15:45:25 #8 type] 
+Type domain.Question is not enhanced.
+
+[2020-02-27 15:45:25 #9 type.registry] 
+New type domain.Event
+
+[2020-02-27 15:45:25 #10 type] 
+Type domain.Event is not enhanced.
+
+[2020-02-27 15:45:25 #11 type.registry] 
+New type java.util.Vector<domain.Question>
+
+[2020-02-27 15:45:25 #12 type.registry] 
+New type java.util.ArrayList<java.lang.Object>
+
+[2020-02-27 15:45:25 #13 type.registry] 
+New type java.util.Vector<java.lang.Object>
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2020-02-27 15:46:26 #1 store] 
+Database '/home/jonander/git/Sprint_1/Bets/resources/bets.temp' is opened by 11816@pop-os
+
+[2020-02-27 15:46:26 #2 type.registry] 
+New type domain.User
+
+[2020-02-27 15:46:26 #3 type] 
+Type domain.User is not enhanced.
+
+[2020-02-27 15:46:26 #4 type.registry] 
+New type domain.Bet
+
+[2020-02-27 15:46:26 #5 type.registry] 
+New type java.util.ArrayList<domain.Bet>
+
+[2020-02-27 15:46:26 #6 type] 
+Type domain.Bet is not enhanced.
+
+[2020-02-27 15:46:26 #7 type.registry] 
+New type domain.Question
+
+[2020-02-27 15:46:26 #8 type] 
+Type domain.Question is not enhanced.
+
+[2020-02-27 15:46:26 #9 type.registry] 
+New type domain.Event
+
+[2020-02-27 15:46:26 #10 type] 
+Type domain.Event is not enhanced.
+
+[2020-02-27 15:46:26 #11 type.registry] 
+New type java.util.Vector<domain.Question>
+
+[2020-02-27 15:46:26 #12 type.registry] 
+New type java.util.ArrayList<java.lang.Object>
+
+[2020-02-27 15:46:26 #13 type.registry] 
+New type java.util.Vector<java.lang.Object>
+
