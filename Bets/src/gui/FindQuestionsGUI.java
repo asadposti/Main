@@ -35,8 +35,8 @@ public class FindQuestionsGUI extends JFrame {
 	private JTable tableEvents= new JTable();
 	private JTable tableQueries = new JTable();
 
-	private DefaultTableModel tableModelEvents;
-	private DefaultTableModel tableModelQueries;
+	private NonEditableTableModel tableModelEvents;
+	private NonEditableTableModel tableModelQueries;
 
 	
 	private String[] columnNamesEvents = new String[] {
@@ -178,7 +178,7 @@ public class FindQuestionsGUI extends JFrame {
 		});
 
 		scrollPaneEvents.setViewportView(tableEvents);
-		tableModelEvents = new DefaultTableModel(null, columnNamesEvents);
+		tableModelEvents = new NonEditableTableModel(null, columnNamesEvents);
 
 		tableEvents.setModel(tableModelEvents);
 		tableEvents.getColumnModel().getColumn(0).setPreferredWidth(25);
@@ -186,7 +186,7 @@ public class FindQuestionsGUI extends JFrame {
 
 
 		scrollPaneQueries.setViewportView(tableQueries);
-		tableModelQueries = new DefaultTableModel(null, columnNamesQueries);
+		tableModelQueries = new NonEditableTableModel(null, columnNamesQueries);
 
 		tableQueries.setModel(tableModelQueries);
 		tableQueries.getColumnModel().getColumn(0).setPreferredWidth(25);
@@ -197,6 +197,23 @@ public class FindQuestionsGUI extends JFrame {
 
 	}
 
+	/**
+	 * Custom class to make the JTable cells non-editable
+	 * @author Julen
+	 */
+	public class NonEditableTableModel extends DefaultTableModel
+	{	private static final long serialVersionUID = 1L;
+
+		public NonEditableTableModel(Object[][] data, Object[] columnNames) {
+			super(data, columnNamesEvents);
+		}
+	
+		public boolean isCellEditable (int row, int column)
+		   {
+		       return false;
+		   }
+	}
+	
 	private void jButton2_actionPerformed(ActionEvent e) {
 		this.setVisible(false);
 	}

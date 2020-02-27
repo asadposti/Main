@@ -24,13 +24,21 @@ import java.awt.Font;
 
 import javax.swing.JPasswordField;
 import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.JTextArea;
+import java.awt.Color;
+import java.awt.SystemColor;
+import javax.swing.UIManager;
+import javax.swing.SwingConstants;
 
 public class UserLoginGUI extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField usernameTextField;
-
 	private JPasswordField passwordField;
+	
+	JTextArea usernameError = new JTextArea();
+	JTextArea passwordError = new JTextArea();
+	
 	/**
 	 * Launch the application.
 	 */
@@ -49,15 +57,19 @@ public class UserLoginGUI extends JFrame {
 		loginButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				BLFacade facade = MainGUI.getBusinessLogic();
+				usernameError.setText("");
+				passwordError.setText("");
 				String user = usernameTextField.getText();
 				String passs =  new String (passwordField.getPassword());
 				try {
 					if (facade.checkCredentials(user, passs)) {
 						UserLoginGUI.super.dispose();
 					}
+					else {
+						passwordError.setText("Incorrect password");
+					}
 				} catch (invalidID e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					usernameError.setText(e.getMessage());
 				}
 			}
 		});
@@ -72,46 +84,67 @@ public class UserLoginGUI extends JFrame {
 		passwordLabel.setFont(new Font("Dialog", Font.BOLD, 16));
 
 		passwordField = new JPasswordField();
+		usernameError.setEditable(false);
+		
+		
+		usernameError.setBackground(UIManager.getColor("InternalFrame.minimizeIconBackground"));
+		usernameError.setForeground(new Color(255, 51, 51));
+		passwordError.setEditable(false);
+		
+
+		passwordError.setForeground(new Color(255, 51, 51));
+		passwordError.setBackground(SystemColor.menu);
+		
+		JButton cancelButton = new JButton("Cancel");
+		cancelButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				JFrame user = new MainGUI();
+				user.setVisible(true);
+				UserLoginGUI.super.dispose();
+			}
+		});
+		cancelButton.setFont(new Font("Dialog", Font.BOLD, 16));
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
-				gl_contentPane.createParallelGroup(Alignment.TRAILING)
+			gl_contentPane.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_contentPane.createSequentialGroup()
-						.addGap(161)
-						.addComponent(loginButton, GroupLayout.DEFAULT_SIZE, 117, Short.MAX_VALUE)
-						.addGap(162))
+					.addGap(161)
+					.addComponent(loginButton, GroupLayout.DEFAULT_SIZE, 101, Short.MAX_VALUE)
+					.addGap(51)
+					.addComponent(cancelButton, GroupLayout.PREFERRED_SIZE, 101, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap())
 				.addGroup(gl_contentPane.createSequentialGroup()
-						.addContainerGap()
-						.addComponent(usernameLabel, GroupLayout.DEFAULT_SIZE, 111, Short.MAX_VALUE)
-						.addGap(317))
-				.addGroup(Alignment.LEADING, gl_contentPane.createSequentialGroup()
-						.addContainerGap()
-						.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-								.addGroup(Alignment.TRAILING, gl_contentPane.createSequentialGroup()
-										.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
-												.addGroup(gl_contentPane.createSequentialGroup()
-														.addGap(12)
-														.addComponent(passwordField, GroupLayout.DEFAULT_SIZE, 371, Short.MAX_VALUE))
-												.addComponent(usernameTextField, GroupLayout.DEFAULT_SIZE, 383, Short.MAX_VALUE))
-										.addGap(45))
-								.addGroup(gl_contentPane.createSequentialGroup()
-										.addComponent(passwordLabel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-										.addGap(341))))
-				);
+					.addContainerGap(30, Short.MAX_VALUE)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
+						.addComponent(usernameError, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 348, GroupLayout.PREFERRED_SIZE)
+						.addComponent(usernameTextField, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 349, GroupLayout.PREFERRED_SIZE)
+						.addComponent(usernameLabel, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 349, Short.MAX_VALUE)
+						.addComponent(passwordError, GroupLayout.PREFERRED_SIZE, 347, GroupLayout.PREFERRED_SIZE)
+						.addComponent(passwordLabel, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 349, Short.MAX_VALUE)
+						.addComponent(passwordField, GroupLayout.PREFERRED_SIZE, 348, GroupLayout.PREFERRED_SIZE))
+					.addGap(45))
+		);
 		gl_contentPane.setVerticalGroup(
-				gl_contentPane.createParallelGroup(Alignment.LEADING)
+			gl_contentPane.createParallelGroup(Alignment.TRAILING)
 				.addGroup(gl_contentPane.createSequentialGroup()
-						.addContainerGap()
-						.addComponent(usernameLabel, GroupLayout.DEFAULT_SIZE, 19, Short.MAX_VALUE)
-						.addGap(31)
-						.addComponent(usernameTextField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addGap(35)
-						.addComponent(passwordLabel)
-						.addPreferredGap(ComponentPlacement.UNRELATED)
-						.addComponent(passwordField)
-						.addGap(44)
+					.addGap(36)
+					.addComponent(usernameLabel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(usernameTextField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+					.addGap(3)
+					.addComponent(usernameError, GroupLayout.PREFERRED_SIZE, 21, GroupLayout.PREFERRED_SIZE)
+					.addGap(16)
+					.addComponent(passwordLabel)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(passwordField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+					.addGap(5)
+					.addComponent(passwordError, GroupLayout.PREFERRED_SIZE, 21, GroupLayout.PREFERRED_SIZE)
+					.addGap(18)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
 						.addComponent(loginButton, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
-						.addGap(18))
-				);
+						.addComponent(cancelButton, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE))
+					.addGap(12))
+		);
 		contentPane.setLayout(gl_contentPane);
 	}
 }

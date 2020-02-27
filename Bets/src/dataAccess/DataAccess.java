@@ -266,7 +266,7 @@ public class DataAccess  {
 	public User registerUser(String iD, String password, String name, String surname, String email, boolean isAdmin) throws invalidID{
 	
 		if(db.find(User.class, iD) != null) {throw new invalidID("This ID is taken");}
-	
+		
 		db.getTransaction().begin();
 		User u = new User(iD, password, name, surname, email, isAdmin);
 		db.persist(u);

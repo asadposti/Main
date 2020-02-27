@@ -111,6 +111,10 @@ public class MainGUI extends JFrame {
 	private JButton getBoton2() {
 		if (jButtonCreateQuery == null) {
 			jButtonCreateQuery = new JButton();
+			jButtonCreateQuery.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+				}
+			});
 			jButtonCreateQuery.setEnabled(false);
 			if (jButtonCreateQuery.isEnabled()) {
 				jButtonCreateQuery.setText(ResourceBundle.getBundle("Etiquetas").getString("CreateQuery"));
@@ -198,12 +202,14 @@ public class MainGUI extends JFrame {
 		}
 		return rdbtnNewRadioButton_2;
 	}
+	
 	public  void hideLogInRegister() {
 		btnLogIn.setEnabled(false);
 		btnLogIn.setVisible(false);
 		btnRegister.setEnabled(false);
 		btnRegister.setVisible(false);
 	}
+	
 	private JButton getBtnLogIn() {
 		if (btnLogIn == null) {
 			btnLogIn = new JButton(ResourceBundle.getBundle("Etiquetas").getString("MainGUI.btnLogIn.text")); //$NON-NLS-1$ //$NON-NLS-2$
