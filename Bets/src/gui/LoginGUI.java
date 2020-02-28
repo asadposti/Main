@@ -71,7 +71,7 @@ public class LoginGUI extends JFrame {
 	 * Create the frame.
 	 */
 	public LoginGUI() {
-		setBounds(100, 100, 455,474);
+		setBounds(600, 200, 455,474);
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[]{35, 20, 148, 20, 25, 20, 152, 20, 35, 0};
 		gridBagLayout.rowHeights = new int[]{20, 15, 20, 12, 14, 0, 20, 14, 0, 20, 14, 0, 0, 0, 0, 23, 25, 0};
