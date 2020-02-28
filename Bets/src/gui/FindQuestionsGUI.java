@@ -15,6 +15,8 @@ import java.util.*;
 
 import javax.swing.table.AbstractTableModel;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumnModel;
+import javax.swing.table.TableModel;
 
 
 public class FindQuestionsGUI extends JFrame {
@@ -46,7 +48,8 @@ public class FindQuestionsGUI extends JFrame {
 	};
 	private String[] columnNamesQueries = new String[] {
 			ResourceBundle.getBundle("Etiquetas").getString("QueryN"), 
-			ResourceBundle.getBundle("Etiquetas").getString("Query")
+			ResourceBundle.getBundle("Etiquetas").getString("Query"),
+			"Nepe", "Place bet", "Min bet"
 
 	};
 
@@ -71,7 +74,7 @@ public class FindQuestionsGUI extends JFrame {
 		this.setTitle(ResourceBundle.getBundle("Etiquetas").getString("QueryQueries"));
 
 		jLabelEventDate.setBounds(new Rectangle(40, 15, 140, 25));
-		jLabelQueries.setBounds(138, 248, 406, 14);
+		jLabelQueries.setBounds(40, 251, 406, 14);
 		jLabelEvents.setBounds(295, 19, 259, 16);
 
 		this.getContentPane().add(jLabelEventDate, null);
@@ -149,7 +152,7 @@ public class FindQuestionsGUI extends JFrame {
 		this.getContentPane().add(jCalendar1, null);
 		
 		scrollPaneEvents.setBounds(new Rectangle(292, 50, 346, 150));
-		scrollPaneQueries.setBounds(new Rectangle(138, 274, 406, 116));
+		scrollPaneQueries.setBounds(new Rectangle(40, 276, 606, 116));
 
 		tableEvents.addMouseListener(new MouseAdapter() {
 			@Override
@@ -159,7 +162,7 @@ public class FindQuestionsGUI extends JFrame {
 				Vector<Question> queries=ev.getQuestions();
 
 				tableModelQueries.setDataVector(null, columnNamesQueries);
-
+	
 				if (queries.isEmpty())
 					jLabelQueries.setText(ResourceBundle.getBundle("Etiquetas").getString("NoQueries")+": "+ev.getDescription());
 				else 
@@ -174,6 +177,9 @@ public class FindQuestionsGUI extends JFrame {
 				}
 				tableQueries.getColumnModel().getColumn(0).setPreferredWidth(25);
 				tableQueries.getColumnModel().getColumn(1).setPreferredWidth(268);
+				tableQueries.getColumnModel().getColumn(2).setPreferredWidth(25);
+				tableQueries.getColumnModel().getColumn(3).setPreferredWidth(45);
+				tableQueries.getColumnModel().getColumn(4).setPreferredWidth(45);
 			}
 		});
 
@@ -190,7 +196,7 @@ public class FindQuestionsGUI extends JFrame {
 
 		tableQueries.setModel(tableModelQueries);
 		tableQueries.getColumnModel().getColumn(0).setPreferredWidth(25);
-		tableQueries.getColumnModel().getColumn(1).setPreferredWidth(268);
+		tableQueries.getColumnModel().getColumn(1).setPreferredWidth(168);
 
 		this.getContentPane().add(scrollPaneEvents, null);
 		this.getContentPane().add(scrollPaneQueries, null);
@@ -203,7 +209,7 @@ public class FindQuestionsGUI extends JFrame {
 	 */
 	public class NonEditableTableModel extends DefaultTableModel
 	{	private static final long serialVersionUID = 1L;
-
+		
 		public NonEditableTableModel(Object[][] data, Object[] columnNames) {
 			super(data, columnNamesEvents);
 		}
