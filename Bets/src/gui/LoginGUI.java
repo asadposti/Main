@@ -29,6 +29,7 @@ import java.awt.SystemColor;
 import javax.swing.JTextArea;
 import java.awt.Color;
 import javax.swing.UIManager;
+import java.awt.ComponentOrientation;
 
 public class LoginGUI extends JFrame {
 
@@ -63,10 +64,6 @@ public class LoginGUI extends JFrame {
 		});
 	}
 
-
-
-
-	
 	/**
 	 * Create the frame.
 	 */
@@ -320,16 +317,17 @@ public class LoginGUI extends JFrame {
 		gbc_emailTextField.gridx = 1;
 		gbc_emailTextField.gridy = 13;
 		getContentPane().add(emailTextField, gbc_emailTextField);
+		emailErrorArea.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
 		
 		
 		emailErrorArea.setForeground(new Color(255, 51, 51));
 		emailErrorArea.setEditable(false);
 		emailErrorArea.setBackground(SystemColor.menu);
 		GridBagConstraints gbc_emailErrorArea = new GridBagConstraints();
-		gbc_emailErrorArea.gridwidth = 5;
+		gbc_emailErrorArea.gridwidth = 6;
 		gbc_emailErrorArea.insets = new Insets(0, 0, 5, 5);
-		gbc_emailErrorArea.fill = GridBagConstraints.BOTH;
-		gbc_emailErrorArea.gridx = 2;
+		gbc_emailErrorArea.fill = GridBagConstraints.VERTICAL;
+		gbc_emailErrorArea.gridx = 1;
 		gbc_emailErrorArea.gridy = 14;
 		getContentPane().add(emailErrorArea, gbc_emailErrorArea);
 		GridBagConstraints gbc_registerButton = new GridBagConstraints();

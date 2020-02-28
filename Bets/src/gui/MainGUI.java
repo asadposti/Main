@@ -165,6 +165,7 @@ public class MainGUI extends JFrame {
 	private JRadioButton getRdbtnNewRadioButton() {
 		if (rdbtnNewRadioButton == null) {
 			rdbtnNewRadioButton = new JRadioButton("English");
+			rdbtnNewRadioButton.setBounds(212, 5, 59, 23);
 			rdbtnNewRadioButton.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					Locale.setDefault(new Locale("en"));
@@ -178,6 +179,7 @@ public class MainGUI extends JFrame {
 	private JRadioButton getRdbtnNewRadioButton_1() {
 		if (rdbtnNewRadioButton_1 == null) {
 			rdbtnNewRadioButton_1 = new JRadioButton("Euskara");
+			rdbtnNewRadioButton_1.setBounds(64, 5, 63, 23);
 			rdbtnNewRadioButton_1.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
 					Locale.setDefault(new Locale("eus"));
@@ -191,6 +193,7 @@ public class MainGUI extends JFrame {
 	private JRadioButton getRdbtnNewRadioButton_2() {
 		if (rdbtnNewRadioButton_2 == null) {
 			rdbtnNewRadioButton_2 = new JRadioButton("Castellano");
+			rdbtnNewRadioButton_2.setBounds(132, 5, 75, 23);
 			rdbtnNewRadioButton_2.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					Locale.setDefault(new Locale("es"));
@@ -213,6 +216,7 @@ public class MainGUI extends JFrame {
 	private JButton getBtnLogIn() {
 		if (btnLogIn == null) {
 			btnLogIn = new JButton(ResourceBundle.getBundle("Etiquetas").getString("MainGUI.btnLogIn.text")); //$NON-NLS-1$ //$NON-NLS-2$
+			btnLogIn.setBounds(276, 5, 61, 23);
 			btnLogIn.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
 					JFrame user = new UserLoginGUI();
@@ -220,13 +224,13 @@ public class MainGUI extends JFrame {
 					MainGUI.super.dispose();
 				}
 			});
-			btnLogIn.setBounds(36, 36, 117, 25);
 		}
 		return btnLogIn;
 	}
 	private JButton getBtnRegister() {
 		if (btnRegister == null) {
 			btnRegister = new JButton(ResourceBundle.getBundle("Etiquetas").getString("MainGUI.btnRegister.text")); //$NON-NLS-1$ //$NON-NLS-2$
+			btnRegister.setBounds(342, 5, 73, 23);
 			btnRegister.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
 					JFrame login = new LoginGUI();
@@ -234,13 +238,13 @@ public class MainGUI extends JFrame {
 					MainGUI.super.dispose();
 				}
 			});
-			btnRegister.setBounds(348, 36, 117, 25);
 		}
 		return btnRegister;
 	}
 	private JPanel getPanel() {
 		if (panel == null) {
 			panel = new JPanel();
+			
 			panel.add(getRdbtnNewRadioButton_1());
 			panel.add(getRdbtnNewRadioButton_2());
 			panel.add(getRdbtnNewRadioButton());
