@@ -63,6 +63,9 @@ public class UserLoginGUI extends JFrame {
 				String passs =  new String (passwordField.getPassword());
 				try {
 					if (facade.checkCredentials(user, passs)) {
+						JFrame m = new MainGUI();
+						((MainGUI) m).hideLogInRegister();
+						m.setVisible(true);
 						UserLoginGUI.super.dispose();
 					}
 					else {
