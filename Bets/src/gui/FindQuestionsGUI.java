@@ -80,8 +80,9 @@ public class FindQuestionsGUI extends JFrame {
 		this.getContentPane().add(jLabelEventDate, null);
 		this.getContentPane().add(jLabelQueries);
 		this.getContentPane().add(jLabelEvents);
+		jButtonClose.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-		jButtonClose.setBounds(new Rectangle(274, 419, 130, 30));
+		jButtonClose.setBounds(new Rectangle(424, 420, 130, 30));
 
 		jButtonClose.addActionListener(new ActionListener()
 		{
@@ -200,6 +201,11 @@ public class FindQuestionsGUI extends JFrame {
 
 		this.getContentPane().add(scrollPaneEvents, null);
 		this.getContentPane().add(scrollPaneQueries, null);
+		
+		JButton btnBet = new JButton(ResourceBundle.getBundle("Etiquetas").getString("FindQuestionsGUI.btnBet.text")); //$NON-NLS-1$ //$NON-NLS-2$
+		btnBet.setAlignmentX(Component.CENTER_ALIGNMENT);
+		btnBet.setBounds(102, 420, 130, 30);
+		getContentPane().add(btnBet);
 
 	}
 
@@ -223,5 +229,4 @@ public class FindQuestionsGUI extends JFrame {
 	private void jButton2_actionPerformed(ActionEvent e) {
 		this.setVisible(false);
 	}
-
 }
