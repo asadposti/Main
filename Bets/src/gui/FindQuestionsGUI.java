@@ -222,6 +222,9 @@ public class FindQuestionsGUI extends JFrame {
 	
 		public boolean isCellEditable (int row, int column)
 		   {
+			 if (column == 3) {
+				return true;
+			}
 		       return false;
 		   }
 	}
