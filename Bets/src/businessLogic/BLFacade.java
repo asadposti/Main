@@ -14,6 +14,7 @@ import domain.Event;
 import exceptions.EventFinished;
 import exceptions.QuestionAlreadyExist;
 import exceptions.invalidID;
+import exceptions.invalidPW;
 
 import javax.jws.WebMethod;
 import javax.jws.WebService;
@@ -74,10 +75,10 @@ public interface BLFacade  {
 	 * @param ID			ID of the presumed user.
 	 * @param pw			password of the presumed user.
 	 * 
-	 * @return				boolean indicating if there exists a user in the database with these credentials.
+	 * @return				int indicating privilegde level of the user( 0: Regular user, 1:Admin, -1:Invalid credentials).
 	 * @throws invalidID	exception thrown when no user entity with the input ID exists in the database.
 	 */
-	@WebMethod public boolean checkCredentials(String ID, String password) throws invalidID;
+	@WebMethod public int checkCredentials(String ID, String password) throws invalidID, invalidPW;
 	
 	/**
 	 * This method calls the data access to initialize the database with some events and questions.

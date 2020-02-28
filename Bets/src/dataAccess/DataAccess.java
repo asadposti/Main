@@ -26,6 +26,7 @@ import domain.User;
 import exceptions.EventFinished;
 import exceptions.QuestionAlreadyExist;
 import exceptions.invalidID;
+import exceptions.invalidPW;
 
 /**
  * It implements the data access to the objectDb database
@@ -280,23 +281,32 @@ public class DataAccess  {
 	 * @param ID			ID of the presumed user.
 	 * @param pw			password of the presumed user.
 	 * 
-	 * @return				boolean indicating if there exists a user in the database with these credentials.
+	 * @return				int indicating privilegde level of the user( 0: Regular user, 1:Admin, -1:Invalid credentials)
 	 * @throws invalidID	exception thrown when no user entity with the input ID exists in the database.
 	 */
-	public boolean checkCredentials(String ID, String pw) throws invalidID {
+	public int checkCredentials(String ID, String pw) throws invalidID, invalidPW {
 		User u = db.find(User.class, ID);
+
 		if(u == null) {
 			throw new invalidID("ID does not correspond to a registered user");
 		}
-		if(u.getPassword().equals(pw)) {
-			return true;
+		else if(!u.getPassword().equals(pw)) {
+			throw new invalidPW("Incorrect password");
 		}
-		return false;
+		else{
+			if(u.isAdmin()) {
+				return 1;
+			}
+			else {
+				return 0;
+			}
+		}
 	}
 	
 	
 	public void close(){
 		db.close();
+		emf.close();
 		System.out.println("DataBase closed");
 	}
 	

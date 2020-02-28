@@ -215,13 +215,14 @@ public class MainGUI extends JFrame {
 	
 	private JButton getBtnLogIn() {
 		if (btnLogIn == null) {
-			btnLogIn = new JButton(ResourceBundle.getBundle("Etiquetas").getString("MainGUI.btnLogIn.text")); //$NON-NLS-1$ //$NON-NLS-2$
+			btnLogIn = new JButton(ResourceBundle.getBundle("Etiquetas").getString("LogIn")); //$NON-NLS-1$ //$NON-NLS-2$
 			btnLogIn.setBounds(276, 5, 61, 23);
 			btnLogIn.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
 					JFrame user = new UserLoginGUI();
 					user.setVisible(true);
-					MainGUI.super.dispose();
+					user.setResizable(false);
+					dispose();
 				}
 			});
 		}
@@ -229,13 +230,13 @@ public class MainGUI extends JFrame {
 	}
 	private JButton getBtnRegister() {
 		if (btnRegister == null) {
-			btnRegister = new JButton(ResourceBundle.getBundle("Etiquetas").getString("MainGUI.btnRegister.text")); //$NON-NLS-1$ //$NON-NLS-2$
+			btnRegister = new JButton(ResourceBundle.getBundle("Etiquetas").getString("Register")); //$NON-NLS-1$ //$NON-NLS-2$
 			btnRegister.setBounds(342, 5, 73, 23);
 			btnRegister.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
-					JFrame login = new LoginGUI();
+					JFrame login = new RegisterGUI();
 					login.setVisible(true);
-					MainGUI.super.dispose();
+					dispose();
 				}
 			});
 		}

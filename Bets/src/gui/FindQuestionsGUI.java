@@ -70,7 +70,7 @@ public class FindQuestionsGUI extends JFrame {
 	{
 
 		this.getContentPane().setLayout(null);
-		this.setSize(new Dimension(700, 500));
+		this.setSize(new Dimension(700, 513));
 		this.setTitle(ResourceBundle.getBundle("Etiquetas").getString("QueryQueries"));
 
 		jLabelEventDate.setBounds(new Rectangle(40, 15, 140, 25));

@@ -31,7 +31,7 @@ import java.awt.Color;
 import javax.swing.UIManager;
 import java.awt.ComponentOrientation;
 
-public class LoginGUI extends JFrame {
+public class RegisterGUI extends JFrame {
 
 
 	private JTextField usernameTextField;
@@ -40,14 +40,13 @@ public class LoginGUI extends JFrame {
 	private JTextField surnameTextField;
 	private JPasswordField passwordField;
 	private JPasswordField passwordConfirmField;
-	
-	JTextArea usernameErrorArea = new JTextArea();
-	JTextArea pwErrorArea = new JTextArea();
-	JTextArea confirmPwErrorArea = new JTextArea();
-	JTextArea nameErrorArea = new JTextArea();
-	JTextArea surnameErrorArea = new JTextArea();
-	JTextArea emailErrorArea = new JTextArea();
 
+	JLabel usernameErrorLabel = new JLabel("");
+	JLabel emailErrorLabel = new JLabel("");
+	JLabel surnameErrorLabel = new JLabel("");
+	JLabel confirmPwErrorLabel = new JLabel("");
+	JLabel pwErrorLabel = new JLabel("");
+	JLabel nameErrorLabel = new JLabel("");
 	/**
 	 * Launch the application.
 	 */
@@ -55,7 +54,7 @@ public class LoginGUI extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					LoginGUI frame = new LoginGUI();
+					RegisterGUI frame = new RegisterGUI();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -67,11 +66,11 @@ public class LoginGUI extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public LoginGUI() {
+	public RegisterGUI() {
 		setBounds(600, 200, 455,474);
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[]{35, 20, 148, 20, 25, 20, 152, 20, 35, 0};
-		gridBagLayout.rowHeights = new int[]{20, 15, 20, 12, 14, 0, 20, 14, 0, 20, 14, 0, 0, 0, 0, 23, 25, 0};
+		gridBagLayout.rowHeights = new int[]{20, 15, 20, 12, 25, 28, 20, 25, 28, 20, 25, 28, 0, 25, 28, 23, 25, 0};
 		gridBagLayout.columnWeights = new double[]{0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, Double.MIN_VALUE};
 		gridBagLayout.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 1.0, 0.0, 0.0, 1.0, 0.0, 0.0, 1.0, 0.0, 0.0, Double.MIN_VALUE};
 		getContentPane().setLayout(gridBagLayout);
@@ -98,23 +97,21 @@ public class LoginGUI extends JFrame {
 		usernameTextField.setColumns(10);
 		GridBagConstraints gbc_usernameTextField = new GridBagConstraints();
 		gbc_usernameTextField.gridwidth = 3;
-		gbc_usernameTextField.anchor = GridBagConstraints.NORTH;
-		gbc_usernameTextField.fill = GridBagConstraints.HORIZONTAL;
+		gbc_usernameTextField.fill = GridBagConstraints.BOTH;
 		gbc_usernameTextField.insets = new Insets(0, 0, 5, 5);
 		gbc_usernameTextField.gridx = 1;
 		gbc_usernameTextField.gridy = 4;
 		getContentPane().add(usernameTextField, gbc_usernameTextField);
 		
-		
-		usernameErrorArea.setBackground(SystemColor.menu);
-		usernameErrorArea.setForeground(new Color(255, 51, 51));
-		usernameErrorArea.setEditable(false);
-		GridBagConstraints gbc_usernameErrorArea = new GridBagConstraints();
-		gbc_usernameErrorArea.insets = new Insets(0, 0, 5, 5);
-		gbc_usernameErrorArea.fill = GridBagConstraints.BOTH;
-		gbc_usernameErrorArea.gridx = 2;
-		gbc_usernameErrorArea.gridy = 5;
-		getContentPane().add(usernameErrorArea, gbc_usernameErrorArea);
+
+		usernameErrorLabel.setForeground(new Color(255, 51, 51));
+		GridBagConstraints gbc_usernameErrorLabel = new GridBagConstraints();
+		gbc_usernameErrorLabel.gridwidth = 3;
+		gbc_usernameErrorLabel.anchor = GridBagConstraints.NORTHWEST;
+		gbc_usernameErrorLabel.insets = new Insets(0, 0, 5, 5);
+		gbc_usernameErrorLabel.gridx = 1;
+		gbc_usernameErrorLabel.gridy = 5;
+		getContentPane().add(usernameErrorLabel, gbc_usernameErrorLabel);
 		
 		JLabel lblPassword = new JLabel("Password:");
 		GridBagConstraints gbc_lblPassword = new GridBagConstraints();
@@ -140,12 +137,12 @@ public class LoginGUI extends JFrame {
 				
 				BLFacade facade = MainGUI.getBusinessLogic();
 				
-				usernameErrorArea.setText("");
-				pwErrorArea.setText("");
-				confirmPwErrorArea.setText("");
-				nameErrorArea.setText("");
-				surnameErrorArea.setText("");
-				emailErrorArea.setText("");
+				usernameErrorLabel.setText("");
+				pwErrorLabel.setText("");
+				confirmPwErrorLabel.setText("");
+				nameErrorLabel.setText("");
+				surnameErrorLabel.setText("");
+				emailErrorLabel.setText("");
 				
 				//retrieve input field data and check validity
 				String username = usernameTextField.getText();
@@ -156,24 +153,24 @@ public class LoginGUI extends JFrame {
 				String email = emailTextField.getText();
 				
 				if (username.equals("") || pass.equals("") || name.equals("") || surname.equals("") || email.equals("")) {
-					emailErrorArea.setText("Fill all areas");
+					emailErrorLabel.setText("Please fill all areas");
 				}
 				else if(pass.length()<8) {
-					pwErrorArea.setText("Min. password length : 8");
+					pwErrorLabel.setText("Min. password length : 8");
 				}
 				else if(!passconfirm.equals(pass)){
-					confirmPwErrorArea.setText("Passwords don't match");
+					confirmPwErrorLabel.setText("Passwords don't match");
 				}
 				else {	
 					try {
+						System.out.println(username + " " + pass + " " + passconfirm + " " + name + " " + surname + " " + email);
 						facade.registerUser(username, pass, name, surname, email, false);
-						JFrame m = new MainGUI();
-						((MainGUI) m).hideLogInRegister();
+						JFrame m = new UserMainGUI();
 						m.setVisible(true);
-						LoginGUI.super.dispose();	
+						RegisterGUI.super.dispose();	
 					}
 					catch (invalidID e) {
-						usernameErrorArea.setText(e.getMessage());
+						usernameErrorLabel.setText(e.getMessage());
 					}
 				}
 			}
@@ -184,15 +181,14 @@ public class LoginGUI extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				JFrame user = new MainGUI();
 				user.setVisible(true);
-				LoginGUI.super.dispose();
+				RegisterGUI.super.dispose();
 			}
 		});
 		
 		passwordField = new JPasswordField();
 		GridBagConstraints gbc_passwordField = new GridBagConstraints();
 		gbc_passwordField.gridwidth = 3;
-		gbc_passwordField.anchor = GridBagConstraints.NORTH;
-		gbc_passwordField.fill = GridBagConstraints.HORIZONTAL;
+		gbc_passwordField.fill = GridBagConstraints.BOTH;
 		gbc_passwordField.insets = new Insets(0, 0, 5, 5);
 		gbc_passwordField.gridx = 1;
 		gbc_passwordField.gridy = 7;
@@ -202,34 +198,30 @@ public class LoginGUI extends JFrame {
 		GridBagConstraints gbc_passwordConfirmField = new GridBagConstraints();
 		gbc_passwordConfirmField.gridwidth = 3;
 		gbc_passwordConfirmField.insets = new Insets(0, 0, 5, 5);
-		gbc_passwordConfirmField.fill = GridBagConstraints.HORIZONTAL;
+		gbc_passwordConfirmField.fill = GridBagConstraints.BOTH;
 		gbc_passwordConfirmField.gridx = 5;
 		gbc_passwordConfirmField.gridy = 7;
 		getContentPane().add(passwordConfirmField, gbc_passwordConfirmField);
 		
+		
+		pwErrorLabel.setForeground(new Color(255, 51, 51));
+		GridBagConstraints gbc_pwErrorLabel = new GridBagConstraints();
+		gbc_pwErrorLabel.gridwidth = 3;
+		gbc_pwErrorLabel.anchor = GridBagConstraints.NORTHWEST;
+		gbc_pwErrorLabel.insets = new Insets(0, 0, 5, 5);
+		gbc_pwErrorLabel.gridx = 1;
+		gbc_pwErrorLabel.gridy = 8;
+		getContentPane().add(pwErrorLabel, gbc_pwErrorLabel);
+		
 
-		pwErrorArea.setForeground(new Color(255, 51, 51));
-		pwErrorArea.setEditable(false);
-		pwErrorArea.setBackground(SystemColor.menu);
-		GridBagConstraints gbc_pwErrorArea = new GridBagConstraints();
-		gbc_pwErrorArea.anchor = GridBagConstraints.WEST;
-		gbc_pwErrorArea.gridwidth = 2;
-		gbc_pwErrorArea.insets = new Insets(0, 0, 5, 5);
-		gbc_pwErrorArea.fill = GridBagConstraints.VERTICAL;
-		gbc_pwErrorArea.gridx = 1;
-		gbc_pwErrorArea.gridy = 8;
-		getContentPane().add(pwErrorArea, gbc_pwErrorArea);
-		
-		
-		confirmPwErrorArea.setForeground(new Color(255, 51, 51));
-		confirmPwErrorArea.setEditable(false);
-		confirmPwErrorArea.setBackground(SystemColor.menu);
-		GridBagConstraints gbc_confirmPwErrorArea = new GridBagConstraints();
-		gbc_confirmPwErrorArea.insets = new Insets(0, 0, 5, 5);
-		gbc_confirmPwErrorArea.fill = GridBagConstraints.BOTH;
-		gbc_confirmPwErrorArea.gridx = 6;
-		gbc_confirmPwErrorArea.gridy = 8;
-		getContentPane().add(confirmPwErrorArea, gbc_confirmPwErrorArea);
+		confirmPwErrorLabel.setForeground(new Color(255, 51, 51));
+		GridBagConstraints gbc_confirmPwErrorLabel = new GridBagConstraints();
+		gbc_confirmPwErrorLabel.gridwidth = 3;
+		gbc_confirmPwErrorLabel.anchor = GridBagConstraints.NORTHWEST;
+		gbc_confirmPwErrorLabel.insets = new Insets(0, 0, 5, 5);
+		gbc_confirmPwErrorLabel.gridx = 5;
+		gbc_confirmPwErrorLabel.gridy = 8;
+		getContentPane().add(confirmPwErrorLabel, gbc_confirmPwErrorLabel);
 		
 		JLabel lblName = new JLabel("Name:");
 		GridBagConstraints gbc_lblName = new GridBagConstraints();
@@ -257,8 +249,7 @@ public class LoginGUI extends JFrame {
 		nameTextField.setColumns(10);
 		GridBagConstraints gbc_nameTextField = new GridBagConstraints();
 		gbc_nameTextField.gridwidth = 3;
-		gbc_nameTextField.anchor = GridBagConstraints.NORTH;
-		gbc_nameTextField.fill = GridBagConstraints.HORIZONTAL;
+		gbc_nameTextField.fill = GridBagConstraints.BOTH;
 		gbc_nameTextField.insets = new Insets(0, 0, 5, 5);
 		gbc_nameTextField.gridx = 1;
 		gbc_nameTextField.gridy = 10;
@@ -268,34 +259,30 @@ public class LoginGUI extends JFrame {
 		surnameTextField.setColumns(10);
 		GridBagConstraints gbc_surnameTextField = new GridBagConstraints();
 		gbc_surnameTextField.gridwidth = 3;
-		gbc_surnameTextField.anchor = GridBagConstraints.NORTH;
-		gbc_surnameTextField.fill = GridBagConstraints.HORIZONTAL;
+		gbc_surnameTextField.fill = GridBagConstraints.BOTH;
 		gbc_surnameTextField.insets = new Insets(0, 0, 5, 5);
 		gbc_surnameTextField.gridx = 5;
 		gbc_surnameTextField.gridy = 10;
 		getContentPane().add(surnameTextField, gbc_surnameTextField);
 		
+		nameErrorLabel.setForeground(new Color(255, 51, 51));
+		GridBagConstraints gbc_nameErrorLabel = new GridBagConstraints();
+		gbc_nameErrorLabel.gridwidth = 3;
+		gbc_nameErrorLabel.anchor = GridBagConstraints.NORTHWEST;
+		gbc_nameErrorLabel.insets = new Insets(0, 0, 5, 5);
+		gbc_nameErrorLabel.gridx = 1;
+		gbc_nameErrorLabel.gridy = 11;
+		getContentPane().add(nameErrorLabel, gbc_nameErrorLabel);
 		
-		nameErrorArea.setForeground(new Color(255, 51, 51));
-		nameErrorArea.setEditable(false);
-		nameErrorArea.setBackground(SystemColor.menu);
-		GridBagConstraints gbc_nameErrorArea = new GridBagConstraints();
-		gbc_nameErrorArea.insets = new Insets(0, 0, 5, 5);
-		gbc_nameErrorArea.fill = GridBagConstraints.BOTH;
-		gbc_nameErrorArea.gridx = 2;
-		gbc_nameErrorArea.gridy = 11;
-		getContentPane().add(nameErrorArea, gbc_nameErrorArea);
-		
-		
-		surnameErrorArea.setForeground(new Color(255, 51, 51));
-		surnameErrorArea.setEditable(false);
-		surnameErrorArea.setBackground(SystemColor.menu);
-		GridBagConstraints gbc_surnameErrorArea = new GridBagConstraints();
-		gbc_surnameErrorArea.insets = new Insets(0, 0, 5, 5);
-		gbc_surnameErrorArea.fill = GridBagConstraints.BOTH;
-		gbc_surnameErrorArea.gridx = 6;
-		gbc_surnameErrorArea.gridy = 11;
-		getContentPane().add(surnameErrorArea, gbc_surnameErrorArea);
+
+		surnameErrorLabel.setForeground(new Color(255, 51, 51));
+		GridBagConstraints gbc_surnameErrorLabel = new GridBagConstraints();
+		gbc_surnameErrorLabel.gridwidth = 3;
+		gbc_surnameErrorLabel.anchor = GridBagConstraints.NORTHWEST;
+		gbc_surnameErrorLabel.insets = new Insets(0, 0, 5, 5);
+		gbc_surnameErrorLabel.gridx = 5;
+		gbc_surnameErrorLabel.gridy = 11;
+		getContentPane().add(surnameErrorLabel, gbc_surnameErrorLabel);
 		
 		JLabel lblEmail = new JLabel("E-mail:");
 		GridBagConstraints gbc_lblEmail = new GridBagConstraints();
@@ -317,19 +304,16 @@ public class LoginGUI extends JFrame {
 		gbc_emailTextField.gridx = 1;
 		gbc_emailTextField.gridy = 13;
 		getContentPane().add(emailTextField, gbc_emailTextField);
-		emailErrorArea.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
 		
-		
-		emailErrorArea.setForeground(new Color(255, 51, 51));
-		emailErrorArea.setEditable(false);
-		emailErrorArea.setBackground(SystemColor.menu);
-		GridBagConstraints gbc_emailErrorArea = new GridBagConstraints();
-		gbc_emailErrorArea.gridwidth = 6;
-		gbc_emailErrorArea.insets = new Insets(0, 0, 5, 5);
-		gbc_emailErrorArea.fill = GridBagConstraints.VERTICAL;
-		gbc_emailErrorArea.gridx = 1;
-		gbc_emailErrorArea.gridy = 14;
-		getContentPane().add(emailErrorArea, gbc_emailErrorArea);
+
+		emailErrorLabel.setForeground(new Color(255, 51, 51));
+		GridBagConstraints gbc_emailErrorLabel = new GridBagConstraints();
+		gbc_emailErrorLabel.anchor = GridBagConstraints.NORTH;
+		gbc_emailErrorLabel.gridwidth = 7;
+		gbc_emailErrorLabel.insets = new Insets(0, 0, 5, 5);
+		gbc_emailErrorLabel.gridx = 1;
+		gbc_emailErrorLabel.gridy = 14;
+		getContentPane().add(emailErrorLabel, gbc_emailErrorLabel);
 		GridBagConstraints gbc_registerButton = new GridBagConstraints();
 		gbc_registerButton.insets = new Insets(0, 0, 5, 5);
 		gbc_registerButton.anchor = GridBagConstraints.NORTH;

@@ -15,6 +15,7 @@ import domain.Event;
 import exceptions.EventFinished;
 import exceptions.QuestionAlreadyExist;
 import exceptions.invalidID;
+import exceptions.invalidPW;
 
 /**
  * It implements the business logic as a web service.
@@ -104,12 +105,21 @@ public class BLFacadeImplementation  implements BLFacade {
 	 * @return					the newly created User object.
 	 * @throws invalidID		exception thrown when there is a pre existing user with this ID in the database.
 	 */
+	@SuppressWarnings("finally")
 	@WebMethod
 	public User registerUser(String iD, String password, String name, String surname, String email, boolean isAdmin) throws invalidID{
 	    DataAccess dBManager=new DataAccess();
-	    User u = dBManager.registerUser(iD, password, name, surname, email, isAdmin);
-	    dBManager.close();	
-	    return u;
+	    User u = null;
+	    try {
+	    	u = dBManager.registerUser(iD, password, name, surname, email, isAdmin);
+	    }
+	    catch (invalidID i) {
+			throw new invalidID();
+		}
+	    finally {
+		    dBManager.close();	
+		    return u;
+	    }
 	}
 	
 	/**
@@ -117,15 +127,24 @@ public class BLFacadeImplementation  implements BLFacade {
 	 * @param ID			ID of the presumed user.
 	 * @param pw			password of the presumed user.
 	 * 
-	 * @return				boolean indicating if there exists a user in the database with these credentials.
+	 * @return				int indicating privilege level of the user( 0: Regular user, 1: Admin, -1: Invalid credentials).
 	 * @throws invalidID	exception thrown when no user entity with the input ID exists in the database.
 	 */
+	@SuppressWarnings("finally")
 	@WebMethod
-	public boolean checkCredentials(String ID, String password) throws invalidID{
+	public int checkCredentials(String ID, String password) throws invalidID, invalidPW{
 		DataAccess dBManager=new DataAccess();
-		boolean valid = dBManager.checkCredentials(ID, password);
-	    dBManager.close();	
-	    return valid;
+	    try {
+	    	return dBManager.checkCredentials(ID, password);
+	    }	
+	    catch (invalidID e) {
+	    	dBManager.close();
+			throw new invalidID(e.getMessage());
+		}
+	    catch (invalidPW e) {
+	    	dBManager.close();
+	    	throw new invalidPW(e.getMessage());
+	    }
 	}
 
 	/**
