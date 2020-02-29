@@ -6,7 +6,6 @@ import configuration.UtilDate;
 import com.toedter.calendar.JCalendar;
 import domain.Question;
 import domain.User;
-import domain.Event;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -24,7 +23,6 @@ public class UserFindQuestionsGUI extends JDialog {
 	private final JLabel jLabelEvents = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("Events")); 
 
 	private JButton jButtonClose = new JButton(ResourceBundle.getBundle("Etiquetas").getString("Close"));
-	private Date date;
 	// Code for JCalendar
 	private JCalendar jCalendar1 = new JCalendar();
 	private Calendar calendarMio = null;
@@ -45,7 +43,8 @@ public class UserFindQuestionsGUI extends JDialog {
 	};
 	private String[] columnNamesQueries = new String[] {
 			ResourceBundle.getBundle("Etiquetas").getString("QueryN"), 
-			ResourceBundle.getBundle("Etiquetas").getString("Query")
+			ResourceBundle.getBundle("Etiquetas").getString("Query"),
+			"MinBet"
 
 	};
 	private JTextField betTextField;
@@ -111,8 +110,6 @@ public class UserFindQuestionsGUI extends JDialog {
 					DateFormat dateformat1 = DateFormat.getDateInstance(1, jCalendar1.getLocale());
 					jCalendar1.setCalendar(calendarMio);
 					Date firstDay=UtilDate.trim(new Date(jCalendar1.getCalendar().getTime().getTime()));
-					date = UtilDate.trim(jCalendar1.getCalendar().getTime());
-
 
 					try {
 						tableModelEvents.setDataVector(null, columnNamesEvents);
@@ -171,10 +168,12 @@ public class UserFindQuestionsGUI extends JDialog {
 
 					row.add(q.getQuestionNumber());
 					row.add(q.getQuestion());
+					row.add(q.getBetMinimum());
 					tableModelQueries.addRow(row);	
 				}
 				tableQueries.getColumnModel().getColumn(0).setPreferredWidth(25);
 				tableQueries.getColumnModel().getColumn(1).setPreferredWidth(268);
+				tableQueries.getColumnModel().getColumn(2).setPreferredWidth(25);
 			}
 		});
 
@@ -231,6 +230,9 @@ public class UserFindQuestionsGUI extends JDialog {
 							int qtNum = (Integer)tableQueries.getValueAt(j, 0);
 							for (Question question : queries) {
 								if (question.getQuestionNumber() == qtNum) {
+									if (question.getBetMinimum() > betAmount) {
+										errorlabel.setText(" Enter a valid amount to bet (Minimum not reached)");
+									}
 									user.placeBet(question, betAmount);
 									break;
 								}
