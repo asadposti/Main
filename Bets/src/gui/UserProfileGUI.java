@@ -42,7 +42,7 @@ public class UserProfileGUI extends JDialog {
 				}
 			}
 		});
-	}
+	} 
 	
 	
 	/**

@@ -43,7 +43,7 @@ public class UserManagementGUI extends JDialog{
 		});
 	}
 
-	/**
+	/** 
 	 * Create the frame.
 	 */
 	public UserManagementGUI() {
