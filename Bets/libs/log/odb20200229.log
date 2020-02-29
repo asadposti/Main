@@ -94,3 +94,189 @@ Type domain.Event is not enhanced.
 [2020-02-29 11:03:08 #6 store] 
 Database 'C:\Users\Usuario\git\Sprint_1\Bets\resources\bets.temp' is closed by 9704@DESKTOP-00OS7EM
 
+------------------------------------------------------------------------------------------------------------------------
+
+[2020-02-29 12:47:10 #1 store] 
+Database '/home/jonander/git/Sprint_1/Bets/resources/bets.temp' is opened by 21505@pop-os
+
+[2020-02-29 12:47:10 #2 type] 
+Type domain.User is not enhanced.
+
+[2020-02-29 12:47:10 #3 type] 
+Type domain.Bet is not enhanced.
+
+[2020-02-29 12:47:10 #4 type] 
+Type domain.Question is not enhanced.
+
+[2020-02-29 12:47:10 #5 type] 
+Type domain.Event is not enhanced.
+
+[2020-02-29 12:47:10 #6 store] 
+Database '/home/jonander/git/Sprint_1/Bets/resources/bets.temp' is closed by 21505@pop-os
+
+[2020-02-29 12:47:19 #7 store] 
+Database '/home/jonander/git/Sprint_1/Bets/resources/bets.temp' is opened by 21505@pop-os
+
+[2020-02-29 12:47:19 #8 store] 
+Database '/home/jonander/git/Sprint_1/Bets/resources/bets.temp' is closed by 21505@pop-os
+
+[2020-02-29 12:47:24 #9 store] 
+Database '/home/jonander/git/Sprint_1/Bets/resources/bets.temp' is opened by 21505@pop-os
+
+[2020-02-29 12:47:24 #10 store] 
+Database '/home/jonander/git/Sprint_1/Bets/resources/bets.temp' is closed by 21505@pop-os
+
+[2020-02-29 12:47:24 #11 store] 
+Database '/home/jonander/git/Sprint_1/Bets/resources/bets.temp' is opened by 21505@pop-os
+
+[2020-02-29 12:47:24 #12 store] 
+Database '/home/jonander/git/Sprint_1/Bets/resources/bets.temp' is closed by 21505@pop-os
+
+[2020-02-29 12:47:26 #13 store] 
+Database '/home/jonander/git/Sprint_1/Bets/resources/bets.temp' is opened by 21505@pop-os
+
+[2020-02-29 12:47:27 #14 store] 
+Database '/home/jonander/git/Sprint_1/Bets/resources/bets.temp' is closed by 21505@pop-os
+
+[2020-02-29 12:47:27 #15 store] 
+Database '/home/jonander/git/Sprint_1/Bets/resources/bets.temp' is opened by 21505@pop-os
+
+[2020-02-29 12:47:27 #16 store] 
+Database '/home/jonander/git/Sprint_1/Bets/resources/bets.temp' is closed by 21505@pop-os
+
+[2020-02-29 12:47:28 #17 store] 
+Database '/home/jonander/git/Sprint_1/Bets/resources/bets.temp' is opened by 21505@pop-os
+
+[2020-02-29 12:47:28 #18 store] 
+Database '/home/jonander/git/Sprint_1/Bets/resources/bets.temp' is closed by 21505@pop-os
+
+[2020-02-29 12:47:28 #19 store] 
+Database '/home/jonander/git/Sprint_1/Bets/resources/bets.temp' is opened by 21505@pop-os
+
+[2020-02-29 12:47:28 #20 store] 
+Database '/home/jonander/git/Sprint_1/Bets/resources/bets.temp' is closed by 21505@pop-os
+
+[2020-02-29 12:47:41 #21 store] 
+Database '/home/jonander/git/Sprint_1/Bets/resources/bets.temp' is opened by 21505@pop-os
+
+[2020-02-29 12:47:41 #22 store] 
+Database '/home/jonander/git/Sprint_1/Bets/resources/bets.temp' is closed by 21505@pop-os
+
+[2020-02-29 12:47:43 #23 store] 
+Database '/home/jonander/git/Sprint_1/Bets/resources/bets.temp' is opened by 21505@pop-os
+
+[2020-02-29 12:47:43 #24 store] 
+Database '/home/jonander/git/Sprint_1/Bets/resources/bets.temp' is closed by 21505@pop-os
+
+[2020-02-29 12:47:45 #25 store] 
+Database '/home/jonander/git/Sprint_1/Bets/resources/bets.temp' is opened by 21505@pop-os
+
+[2020-02-29 12:47:45 #26 store] 
+Database '/home/jonander/git/Sprint_1/Bets/resources/bets.temp' is closed by 21505@pop-os
+
+[2020-02-29 12:47:45 #27 store] 
+Database '/home/jonander/git/Sprint_1/Bets/resources/bets.temp' is opened by 21505@pop-os
+
+[2020-02-29 12:47:45 #28 store] 
+Database '/home/jonander/git/Sprint_1/Bets/resources/bets.temp' is closed by 21505@pop-os
+
+[2020-02-29 12:47:47 #29 store] 
+Database '/home/jonander/git/Sprint_1/Bets/resources/bets.temp' is opened by 21505@pop-os
+
+[2020-02-29 12:47:47 #30 store] 
+Database '/home/jonander/git/Sprint_1/Bets/resources/bets.temp' is closed by 21505@pop-os
+
+[2020-02-29 12:47:47 #31 store] 
+Database '/home/jonander/git/Sprint_1/Bets/resources/bets.temp' is opened by 21505@pop-os
+
+[2020-02-29 12:47:47 #32 store] 
+Database '/home/jonander/git/Sprint_1/Bets/resources/bets.temp' is closed by 21505@pop-os
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2020-02-29 12:48:13 #1 store] 
+Database '/home/jonander/git/Sprint_1/Bets/resources/bets.temp' is opened by 30754@pop-os
+
+[2020-02-29 12:48:13 #2 type] 
+Type domain.User is not enhanced.
+
+[2020-02-29 12:48:13 #3 type] 
+Type domain.Bet is not enhanced.
+
+[2020-02-29 12:48:13 #4 type] 
+Type domain.Question is not enhanced.
+
+[2020-02-29 12:48:13 #5 type] 
+Type domain.Event is not enhanced.
+
+[2020-02-29 12:48:13 #6 store] 
+Database '/home/jonander/git/Sprint_1/Bets/resources/bets.temp' is closed by 30754@pop-os
+
+[2020-02-29 12:48:19 #7 store] 
+Database '/home/jonander/git/Sprint_1/Bets/resources/bets.temp' is opened by 30754@pop-os
+
+[2020-02-29 12:48:19 #8 store] 
+Database '/home/jonander/git/Sprint_1/Bets/resources/bets.temp' is closed by 30754@pop-os
+
+[2020-02-29 12:48:21 #9 store] 
+Database '/home/jonander/git/Sprint_1/Bets/resources/bets.temp' is opened by 30754@pop-os
+
+[2020-02-29 12:48:21 #10 store] 
+Database '/home/jonander/git/Sprint_1/Bets/resources/bets.temp' is closed by 30754@pop-os
+
+[2020-02-29 12:48:23 #11 store] 
+Database '/home/jonander/git/Sprint_1/Bets/resources/bets.temp' is opened by 30754@pop-os
+
+[2020-02-29 12:48:23 #12 store] 
+Database '/home/jonander/git/Sprint_1/Bets/resources/bets.temp' is closed by 30754@pop-os
+
+[2020-02-29 12:48:23 #13 store] 
+Database '/home/jonander/git/Sprint_1/Bets/resources/bets.temp' is opened by 30754@pop-os
+
+[2020-02-29 12:48:23 #14 store] 
+Database '/home/jonander/git/Sprint_1/Bets/resources/bets.temp' is closed by 30754@pop-os
+
+[2020-02-29 12:48:25 #15 store] 
+Database '/home/jonander/git/Sprint_1/Bets/resources/bets.temp' is opened by 30754@pop-os
+
+[2020-02-29 12:48:25 #16 store] 
+Database '/home/jonander/git/Sprint_1/Bets/resources/bets.temp' is closed by 30754@pop-os
+
+[2020-02-29 12:48:25 #17 store] 
+Database '/home/jonander/git/Sprint_1/Bets/resources/bets.temp' is opened by 30754@pop-os
+
+[2020-02-29 12:48:25 #18 store] 
+Database '/home/jonander/git/Sprint_1/Bets/resources/bets.temp' is closed by 30754@pop-os
+
+[2020-02-29 12:48:26 #19 store] 
+Database '/home/jonander/git/Sprint_1/Bets/resources/bets.temp' is opened by 30754@pop-os
+
+[2020-02-29 12:48:26 #20 store] 
+Database '/home/jonander/git/Sprint_1/Bets/resources/bets.temp' is closed by 30754@pop-os
+
+[2020-02-29 12:48:26 #21 store] 
+Database '/home/jonander/git/Sprint_1/Bets/resources/bets.temp' is opened by 30754@pop-os
+
+[2020-02-29 12:48:26 #22 store] 
+Database '/home/jonander/git/Sprint_1/Bets/resources/bets.temp' is closed by 30754@pop-os
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2020-02-29 12:49:25 #1 store] 
+Database '/home/jonander/git/Sprint_1/Bets/resources/bets.temp' is opened by 9589@pop-os
+
+[2020-02-29 12:49:25 #2 type] 
+Type domain.User is not enhanced.
+
+[2020-02-29 12:49:25 #3 type] 
+Type domain.Bet is not enhanced.
+
+[2020-02-29 12:49:25 #4 type] 
+Type domain.Question is not enhanced.
+
+[2020-02-29 12:49:25 #5 type] 
+Type domain.Event is not enhanced.
+
+[2020-02-29 12:49:25 #6 store] 
+Database '/home/jonander/git/Sprint_1/Bets/resources/bets.temp' is closed by 9589@pop-os
+

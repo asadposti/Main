@@ -73,7 +73,7 @@ public class UserLoginGUI extends JFrame {
 						
 				JLabel usernameIconLabel=null;
 				try {
-					usernameIconLabel = new JLabel(new ImageIcon(ImageIO.read(new File("images/usericon1.png"))
+					usernameIconLabel = new JLabel(new ImageIcon(ImageIO.read(new File("images/usericonclBackground.png"))
 					           .getScaledInstance(35, 35, Image.SCALE_SMOOTH)));
 				} catch (IOException e1) {
 					e1.printStackTrace();
@@ -138,7 +138,7 @@ public class UserLoginGUI extends JFrame {
 						
 						JLabel passIconLabel=null;
 						try {
-							passIconLabel = new JLabel(new ImageIcon(ImageIO.read(new File("images/passicon.png"))
+							passIconLabel = new JLabel(new ImageIcon(ImageIO.read(new File("images/passiconclBackground.png"))
 							           .getScaledInstance(35, 35, Image.SCALE_SMOOTH)));
 						} catch (IOException e1) {
 							e1.printStackTrace();
