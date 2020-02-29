@@ -5,6 +5,7 @@ import configuration.UtilDate;
 
 import com.toedter.calendar.JCalendar;
 import domain.Question;
+import domain.User;
 import domain.Event;
 import javax.swing.*;
 import java.awt.*;
@@ -17,13 +18,13 @@ import javax.swing.table.DefaultTableModel;
 
 public class UserFindQuestionsGUI extends JDialog {
 	private static final long serialVersionUID = 1L;
-
+	private User user;
 	private final JLabel jLabelEventDate = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("EventDate"));
 	private final JLabel jLabelQueries = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("Queries")); 
 	private final JLabel jLabelEvents = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("Events")); 
 
 	private JButton jButtonClose = new JButton(ResourceBundle.getBundle("Etiquetas").getString("Close"));
-
+	private Date date;
 	// Code for JCalendar
 	private JCalendar jCalendar1 = new JCalendar();
 	private Calendar calendarMio = null;
@@ -36,7 +37,7 @@ public class UserFindQuestionsGUI extends JDialog {
 	private NonEditableTableModel tableModelEvents;
 	private NonEditableTableModel tableModelQueries;
 
-	
+
 	private String[] columnNamesEvents = new String[] {
 			ResourceBundle.getBundle("Etiquetas").getString("EventN"), 
 			ResourceBundle.getBundle("Etiquetas").getString("Event"), 
@@ -49,10 +50,11 @@ public class UserFindQuestionsGUI extends JDialog {
 	};
 	private JTextField betTextField;
 
-	public UserFindQuestionsGUI()
+	public UserFindQuestionsGUI(User user)
 	{
 		try
 		{
+			this.user = user;
 			jbInit();
 		}
 		catch(Exception e)
@@ -61,7 +63,7 @@ public class UserFindQuestionsGUI extends JDialog {
 		}
 	}
 
-	
+
 	private void jbInit() throws Exception
 	{
 		this.setModal(true);
@@ -70,14 +72,14 @@ public class UserFindQuestionsGUI extends JDialog {
 		this.setTitle(ResourceBundle.getBundle("Etiquetas").getString("QueryQueries"));
 
 		jLabelEventDate.setBounds(new Rectangle(40, 15, 140, 25));
-		jLabelQueries.setBounds(40, 252, 406, 14);
+		jLabelQueries.setBounds(40, 248, 406, 14);
 		jLabelEvents.setBounds(295, 19, 259, 16);
 
 		this.getContentPane().add(jLabelEventDate, null);
 		this.getContentPane().add(jLabelQueries);
 		this.getContentPane().add(jLabelEvents);
 
-		jButtonClose.setBounds(new Rectangle(274, 419, 130, 30));
+		jButtonClose.setBounds(new Rectangle(277, 433, 130, 30));
 
 		jButtonClose.addActionListener(new ActionListener()
 		{
@@ -109,14 +111,14 @@ public class UserFindQuestionsGUI extends JDialog {
 					DateFormat dateformat1 = DateFormat.getDateInstance(1, jCalendar1.getLocale());
 					jCalendar1.setCalendar(calendarMio);
 					Date firstDay=UtilDate.trim(new Date(jCalendar1.getCalendar().getTime().getTime()));
-
+					date = UtilDate.trim(jCalendar1.getCalendar().getTime());
 
 
 					try {
 						tableModelEvents.setDataVector(null, columnNamesEvents);
 						tableModelEvents.setColumnCount(3); // another column added to allocate ev objects
 
-						BLFacade facade=UserMainGUI.getBusinessLogic();
+						BLFacade facade=MainGUI.getBusinessLogic();
 
 						Vector<domain.Event> events=facade.getEvents(firstDay);
 
@@ -146,9 +148,9 @@ public class UserFindQuestionsGUI extends JDialog {
 		});
 
 		this.getContentPane().add(jCalendar1, null);
-		
+
 		scrollPaneEvents.setBounds(new Rectangle(292, 50, 346, 150));
-		scrollPaneQueries.setBounds(new Rectangle(40, 277, 406, 116));
+		scrollPaneQueries.setBounds(new Rectangle(40, 274, 406, 116));
 
 		tableEvents.addMouseListener(new MouseAdapter() {
 			@Override
@@ -193,39 +195,77 @@ public class UserFindQuestionsGUI extends JDialog {
 
 		this.getContentPane().add(scrollPaneEvents, null);
 		this.getContentPane().add(scrollPaneQueries, null);
-		
-		JLabel lblBet = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("UserFindQuestionsGUI.lblPlaceBet.text")); //$NON-NLS-1$ //$NON-NLS-2$
-		lblBet.setBounds(471, 252, 77, 14);
-		getContentPane().add(lblBet);
-		
+
+		JLabel lblPlaceBet = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("UserFindQuestionsGUI.lblPlaceBet.text")); //$NON-NLS-1$ //$NON-NLS-2$
+		lblPlaceBet.setBounds(497, 248, 70, 15);
+		getContentPane().add(lblPlaceBet);
+
 		betTextField = new JTextField();
-		betTextField.setText(ResourceBundle.getBundle("Etiquetas").getString("UserFindQuestionsGUI.textField.text")); //$NON-NLS-1$ //$NON-NLS-2$
-		betTextField.setBounds(468, 275, 86, 20);
+		betTextField.setText(""); //$NON-NLS-1$ //$NON-NLS-2$
+		betTextField.setBounds(497, 273, 114, 19);
 		getContentPane().add(betTextField);
 		betTextField.setColumns(10);
-		
-		JButton btnNewButton = new JButton(ResourceBundle.getBundle("Etiquetas").getString("UserFindQuestionsGUI.btnNewButton.text")); //$NON-NLS-1$ //$NON-NLS-2$
-		btnNewButton.setBounds(471, 335, 89, 23);
-		getContentPane().add(btnNewButton);
+
+		JLabel errorlabel = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("UserFindQuestionsGUI.label.text"));
+		errorlabel.setHorizontalAlignment(SwingConstants.CENTER);
+		errorlabel.setBackground(Color.RED);
+		errorlabel.setForeground(Color.RED);
+		errorlabel.setBounds(161, 396, 406, 25);
+		getContentPane().add(errorlabel);
+
+		JButton btnBet = new JButton(ResourceBundle.getBundle("Etiquetas").getString("UserFindQuestionsGUI.btnBet.text")); //$NON-NLS-1$ //$NON-NLS-2$
+		btnBet.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				try {
+					if (betTextField.getText().equals("")) {
+						errorlabel.setText(" Enter a valid amount to bet");
+					}else {
+						int betAmount = Integer.parseInt(betTextField.getText());
+						if (betAmount > user.getCash()) {
+							errorlabel.setText("Not enought money to bet with that amount");
+						}else {
+							int i=tableEvents.getSelectedRow();
+							domain.Event ev=(domain.Event)tableModelEvents.getValueAt(i,2); // obtain ev object
+							Vector<Question> queries=ev.getQuestions();
+							int j = tableQueries.getSelectedRow();
+							int qtNum = (Integer)tableQueries.getValueAt(j, 0);
+							for (Question question : queries) {
+								if (question.getQuestionNumber() == qtNum) {
+									user.placeBet(question, betAmount);
+									break;
+								}
+							}
+						}
+					}
+				} catch (Exception e) {
+					errorlabel.setText("Please select a event \nand question before betting");
+				}
+			}
+		});
+		btnBet.setBounds(497, 296, 117, 25);
+		getContentPane().add(btnBet);
+
+
 
 	}
 
 	/**
 	 * Custom class to make the JTable cells non-editable
+	 * @author Julen
 	 */
 	public class NonEditableTableModel extends DefaultTableModel
 	{	private static final long serialVersionUID = 1L;
 
-		public NonEditableTableModel(Object[][] data, Object[] columnNames) {
-			super(data, columnNamesEvents);
-		}
-	
-		public boolean isCellEditable (int row, int column)
-		   {
-		       return false;
-		   }
+	public NonEditableTableModel(Object[][] data, Object[] columnNames) {
+		super(data, columnNamesEvents);
 	}
-	
+
+	public boolean isCellEditable (int row, int column)
+	{
+		return false;
+	}
+	}
+
 	private void jButton2_actionPerformed(ActionEvent e) {
 		this.setVisible(false);
 	}
