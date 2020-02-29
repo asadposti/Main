@@ -12,8 +12,6 @@ import java.awt.event.*;
 import java.beans.*;
 import java.text.DateFormat;
 import java.util.*;
-
-import javax.swing.table.AbstractTableModel;
 import javax.swing.table.DefaultTableModel;
 
 

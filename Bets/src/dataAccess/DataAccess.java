@@ -284,7 +284,7 @@ public class DataAccess  {
 	 * @return				int indicating privilegde level of the user( 0: Regular user, 1:Admin, -1:Invalid credentials)
 	 * @throws invalidID	exception thrown when no user entity with the input ID exists in the database.
 	 */
-	public int checkCredentials(String ID, String pw) throws invalidID, invalidPW {
+	public User checkCredentials(String ID, String pw) throws invalidID, invalidPW {
 		User u = db.find(User.class, ID);
 
 		if(u == null) {
@@ -294,12 +294,7 @@ public class DataAccess  {
 			throw new invalidPW("Incorrect password");
 		}
 		else{
-			if(u.isAdmin()) {
-				return 1;
-			}
-			else {
-				return 0;
-			}
+			return u;
 		}
 	}
 	

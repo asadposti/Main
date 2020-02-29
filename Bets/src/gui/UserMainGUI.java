@@ -8,6 +8,7 @@ package gui;
 import javax.swing.*;
 
 import domain.Event;
+import domain.User;
 import businessLogic.BLFacade;
 
 import java.awt.Color;
@@ -27,6 +28,8 @@ public class UserMainGUI extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 
+	private User user; //logged user
+	
 	private JPanel jContentPane = null;
 	private JButton jButtonCheckProfile = null;
 	private JButton jButtonQueryQueries = null;
@@ -51,9 +54,9 @@ public class UserMainGUI extends JFrame {
 	/**
 	 * This is the default constructor
 	 */
-	public UserMainGUI() {
+	public UserMainGUI(User u) {
 		super();
-
+		this.user = u;
 		addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowClosing(WindowEvent e) {
@@ -123,7 +126,7 @@ public class UserMainGUI extends JFrame {
 					public void actionPerformed(java.awt.event.ActionEvent e) {
 						BLFacade facade=MainGUI.getBusinessLogic();
 						//Vector<Event> events=facade.getAllEvents();
-						JDialog a = new UserProfileGUI();
+						JDialog a = new UserProfileGUI(user);
 						a.setVisible(true);
 					}
 				});

@@ -7,6 +7,9 @@ import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import domain.User;
+
 import java.awt.GridBagLayout;
 import javax.swing.JLabel;
 import java.awt.GridBagConstraints;
@@ -21,6 +24,8 @@ import javax.swing.JButton;
 
 public class UserProfileGUI extends JDialog {
 
+	private User user; //logged user
+	
 	private JPanel contentPane;
 
 	/**
@@ -30,23 +35,23 @@ public class UserProfileGUI extends JDialog {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					UserProfileGUI dialog = new UserProfileGUI();
-					dialog.setVisible(true);
+					//UserProfileGUI dialog = new UserProfileGUI();
+					//dialog.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
 			}
 		});
 	}
-
-	
-
 	
 	
 	/**
 	 * Create the frame.
 	 */
-	public UserProfileGUI() {
+	public UserProfileGUI(User u) {
+		
+		this.user = u; //information of logged user
+		
 		this.setModal(true);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 378);

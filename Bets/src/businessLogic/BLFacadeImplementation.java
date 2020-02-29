@@ -105,21 +105,19 @@ public class BLFacadeImplementation  implements BLFacade {
 	 * @return					the newly created User object.
 	 * @throws invalidID		exception thrown when there is a pre existing user with this ID in the database.
 	 */
-	@SuppressWarnings("finally")
 	@WebMethod
 	public User registerUser(String iD, String password, String name, String surname, String email, boolean isAdmin) throws invalidID{
 	    DataAccess dBManager=new DataAccess();
 	    User u = null;
 	    try {
 	    	u = dBManager.registerUser(iD, password, name, surname, email, isAdmin);
+	    	dBManager.close();
+	    	return u;
 	    }
 	    catch (invalidID i) {
-			throw new invalidID();
+		    dBManager.close();
+			throw new invalidID(i.getMessage());
 		}
-	    finally {
-		    dBManager.close();	
-		    return u;
-	    }
 	}
 	
 	/**
@@ -131,12 +129,12 @@ public class BLFacadeImplementation  implements BLFacade {
 	 * @throws invalidID	exception thrown when no user entity with the input ID exists in the database.
 	 */
 	@WebMethod
-	public int checkCredentials(String ID, String password) throws invalidID, invalidPW{
+	public User checkCredentials(String ID, String password) throws invalidID, invalidPW{
 		DataAccess dBManager=new DataAccess();
 	    try {
-	    	int priv = dBManager.checkCredentials(ID, password);
+	    	User u = dBManager.checkCredentials(ID, password);
 	    	dBManager.close();
-	    	return priv;
+	    	return u;
 	    }	
 	    catch (invalidID e) {
 	    	dBManager.close();

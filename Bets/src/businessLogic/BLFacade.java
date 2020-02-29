@@ -78,7 +78,7 @@ public interface BLFacade  {
 	 * @return				int indicating privilegde level of the user( 0: Regular user, 1:Admin, -1:Invalid credentials).
 	 * @throws invalidID	exception thrown when no user entity with the input ID exists in the database.
 	 */
-	@WebMethod public int checkCredentials(String ID, String password) throws invalidID, invalidPW;
+	@WebMethod public User checkCredentials(String ID, String password) throws invalidID, invalidPW;
 	
 	/**
 	 * This method calls the data access to initialize the database with some events and questions.

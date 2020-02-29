@@ -7,6 +7,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import businessLogic.BLFacade;
+import domain.User;
 import exceptions.invalidID;
 import exceptions.invalidPW;
 
@@ -113,17 +114,17 @@ public class UserLoginGUI extends JFrame {
 						BLFacade facade = MainGUI.getBusinessLogic();
 						usernameErrorLabel.setText("");
 						passErrorLabel.setText("");
-						String user = usernameTextField.getText();
+						String username = usernameTextField.getText();
 						String pass =  new String (passwordField.getPassword());
 						try {
-							int privilege = facade.checkCredentials(user, pass);
-							if ( privilege == 0) {
-								JFrame m = new UserMainGUI();
+							User u = facade.checkCredentials(username, pass);
+							if(u.isAdmin()){
+								JFrame m = new AdminMainGUI(u);
 								m.setVisible(true);
 								dispose();
 							}
-							else if(privilege == 1){
-								JFrame m = new AdminMainGUI();
+							else{
+								JFrame m = new UserMainGUI(u);
 								m.setVisible(true);
 								dispose();
 							}

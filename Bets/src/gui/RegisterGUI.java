@@ -4,13 +4,10 @@ package gui;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
-
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
 import javax.swing.JTextField;
-import javax.swing.LayoutStyle.ComponentPlacement;
 
 import businessLogic.BLFacade;
+import domain.User;
 import exceptions.invalidID;
 
 import javax.swing.JLabel;
@@ -24,12 +21,8 @@ import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import java.awt.Font;
-import javax.swing.SwingConstants;
-import java.awt.SystemColor;
-import javax.swing.JTextArea;
 import java.awt.Color;
-import javax.swing.UIManager;
-import java.awt.ComponentOrientation;
+
 
 public class RegisterGUI extends JFrame {
 
@@ -164,10 +157,10 @@ public class RegisterGUI extends JFrame {
 				else {	
 					try {
 						System.out.println(username + " " + pass + " " + passconfirm + " " + name + " " + surname + " " + email);
-						facade.registerUser(username, pass, name, surname, email, false);
-						JFrame m = new UserMainGUI();
+						User u = facade.registerUser(username, pass, name, surname, email, false);
+						JFrame m = new UserMainGUI(u);
 						m.setVisible(true);
-						RegisterGUI.super.dispose();	
+						dispose();	
 					}
 					catch (invalidID e) {
 						usernameErrorLabel.setText(e.getMessage());
