@@ -130,12 +130,13 @@ public class BLFacadeImplementation  implements BLFacade {
 	 * @return				int indicating privilege level of the user( 0: Regular user, 1: Admin, -1: Invalid credentials).
 	 * @throws invalidID	exception thrown when no user entity with the input ID exists in the database.
 	 */
-	@SuppressWarnings("finally")
 	@WebMethod
 	public int checkCredentials(String ID, String password) throws invalidID, invalidPW{
 		DataAccess dBManager=new DataAccess();
 	    try {
-	    	return dBManager.checkCredentials(ID, password);
+	    	int priv = dBManager.checkCredentials(ID, password);
+	    	dBManager.close();
+	    	return priv;
 	    }	
 	    catch (invalidID e) {
 	    	dBManager.close();

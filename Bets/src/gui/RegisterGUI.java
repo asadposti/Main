@@ -181,7 +181,7 @@ public class RegisterGUI extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				JFrame user = new MainGUI();
 				user.setVisible(true);
-				RegisterGUI.super.dispose();
+				dispose();
 			}
 		});
 		
@@ -249,7 +249,7 @@ public class RegisterGUI extends JFrame {
 		nameTextField.setColumns(10);
 		GridBagConstraints gbc_nameTextField = new GridBagConstraints();
 		gbc_nameTextField.gridwidth = 3;
-		gbc_nameTextField.fill = GridBagConstraints.BOTH;
+		gbc_nameTextField.fill = GridBagConstraints.BOTH; 
 		gbc_nameTextField.insets = new Insets(0, 0, 5, 5);
 		gbc_nameTextField.gridx = 1;
 		gbc_nameTextField.gridy = 10;

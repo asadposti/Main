@@ -14,6 +14,7 @@ import javax.imageio.ImageIO;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
+import javax.swing.JDialog;
 import javax.swing.JTextField;
 
 
@@ -193,8 +194,8 @@ public class UserLoginGUI extends JFrame {
 		JButton cancelButton = new JButton("Cancel");
 		cancelButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				JFrame user = new MainGUI();
-				user.setVisible(true);
+				JFrame frame = new MainGUI();
+				frame.setVisible(true);
 				dispose();
 			}
 		});

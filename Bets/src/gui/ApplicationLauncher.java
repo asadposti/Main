@@ -30,7 +30,10 @@ public class ApplicationLauncher {
 		MainGUI a=new MainGUI();
 		a.setVisible(true);
 
+
+
 		try {
+			
 			BLFacade appFacadeInterface;
 //			UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsClassicLookAndFeel");
 //			UIManager.setLookAndFeel("com.sun.java.swing.plaf.motif.MotifLookAndFeel");

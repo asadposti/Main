@@ -19,7 +19,7 @@ import domain.Question;
 import exceptions.EventFinished;
 import exceptions.QuestionAlreadyExist;
 
-public class CreateQuestionGUI extends JFrame {
+public class CreateQuestionGUI extends JDialog {
 	private static final long serialVersionUID = 1L;
 
 	private JComboBox<Event> jComboBoxEvents = new JComboBox<Event>();
@@ -52,6 +52,7 @@ public class CreateQuestionGUI extends JFrame {
 
 	private void jbInit(Vector<domain.Event> v) throws Exception {
 
+		this.setModal(true);
 		this.getContentPane().setLayout(null);
 		this.setSize(new Dimension(604, 370));
 		this.setTitle(ResourceBundle.getBundle("Etiquetas").getString("CreateQuery"));
@@ -259,7 +260,7 @@ public class CreateQuestionGUI extends JFrame {
 			jLabelMsg.setText("");
 
 			// Displays an exception if the query field is empty
-			String inputQuery = jTextFieldQuery.getText();
+			String inputQuery = jTextFieldQuery.getText(); 
 
 			if (inputQuery.length() > 0) {
 

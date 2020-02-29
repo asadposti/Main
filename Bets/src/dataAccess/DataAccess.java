@@ -260,7 +260,7 @@ public class DataAccess  {
 	 * @param surname			surname of the new user.
 	 * @param email				email of the new user.
 	 * @param isAdmin			whether this user has admin. privileges or not.
-	 * 
+	 *  
 	 * @return					the newly created User object.
 	 * @throws invalidID		exception thrown when there is a pre existing user with this ID in the database.
 	 */

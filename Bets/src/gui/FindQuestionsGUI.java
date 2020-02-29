@@ -15,11 +15,9 @@ import java.util.*;
 
 import javax.swing.table.AbstractTableModel;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableColumnModel;
-import javax.swing.table.TableModel;
 
 
-public class FindQuestionsGUI extends JFrame {
+public class FindQuestionsGUI extends JDialog {
 	private static final long serialVersionUID = 1L;
 
 	private final JLabel jLabelEventDate = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("EventDate"));
@@ -48,8 +46,7 @@ public class FindQuestionsGUI extends JFrame {
 	};
 	private String[] columnNamesQueries = new String[] {
 			ResourceBundle.getBundle("Etiquetas").getString("QueryN"), 
-			ResourceBundle.getBundle("Etiquetas").getString("Query"),
-			"Nepe", "Place bet", "Min bet"
+			ResourceBundle.getBundle("Etiquetas").getString("Query")
 
 	};
 
@@ -68,21 +65,20 @@ public class FindQuestionsGUI extends JFrame {
 	
 	private void jbInit() throws Exception
 	{
-
+		this.setModal(true);
 		this.getContentPane().setLayout(null);
-		this.setSize(new Dimension(700, 513));
+		this.setSize(new Dimension(700, 500));
 		this.setTitle(ResourceBundle.getBundle("Etiquetas").getString("QueryQueries"));
 
 		jLabelEventDate.setBounds(new Rectangle(40, 15, 140, 25));
-		jLabelQueries.setBounds(40, 251, 406, 14);
+		jLabelQueries.setBounds(138, 248, 406, 14);
 		jLabelEvents.setBounds(295, 19, 259, 16);
 
 		this.getContentPane().add(jLabelEventDate, null);
 		this.getContentPane().add(jLabelQueries);
 		this.getContentPane().add(jLabelEvents);
-		jButtonClose.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-		jButtonClose.setBounds(new Rectangle(424, 420, 130, 30));
+		jButtonClose.setBounds(new Rectangle(274, 419, 130, 30));
 
 		jButtonClose.addActionListener(new ActionListener()
 		{
@@ -153,7 +149,7 @@ public class FindQuestionsGUI extends JFrame {
 		this.getContentPane().add(jCalendar1, null);
 		
 		scrollPaneEvents.setBounds(new Rectangle(292, 50, 346, 150));
-		scrollPaneQueries.setBounds(new Rectangle(40, 276, 606, 116));
+		scrollPaneQueries.setBounds(new Rectangle(138, 274, 406, 116));
 
 		tableEvents.addMouseListener(new MouseAdapter() {
 			@Override
@@ -163,7 +159,7 @@ public class FindQuestionsGUI extends JFrame {
 				Vector<Question> queries=ev.getQuestions();
 
 				tableModelQueries.setDataVector(null, columnNamesQueries);
-	
+
 				if (queries.isEmpty())
 					jLabelQueries.setText(ResourceBundle.getBundle("Etiquetas").getString("NoQueries")+": "+ev.getDescription());
 				else 
@@ -178,9 +174,6 @@ public class FindQuestionsGUI extends JFrame {
 				}
 				tableQueries.getColumnModel().getColumn(0).setPreferredWidth(25);
 				tableQueries.getColumnModel().getColumn(1).setPreferredWidth(268);
-				tableQueries.getColumnModel().getColumn(2).setPreferredWidth(25);
-				tableQueries.getColumnModel().getColumn(3).setPreferredWidth(45);
-				tableQueries.getColumnModel().getColumn(4).setPreferredWidth(45);
 			}
 		});
 
@@ -197,15 +190,10 @@ public class FindQuestionsGUI extends JFrame {
 
 		tableQueries.setModel(tableModelQueries);
 		tableQueries.getColumnModel().getColumn(0).setPreferredWidth(25);
-		tableQueries.getColumnModel().getColumn(1).setPreferredWidth(168);
+		tableQueries.getColumnModel().getColumn(1).setPreferredWidth(268);
 
 		this.getContentPane().add(scrollPaneEvents, null);
 		this.getContentPane().add(scrollPaneQueries, null);
-		
-		JButton btnBet = new JButton(ResourceBundle.getBundle("Etiquetas").getString("FindQuestionsGUI.btnBet.text")); //$NON-NLS-1$ //$NON-NLS-2$
-		btnBet.setAlignmentX(Component.CENTER_ALIGNMENT);
-		btnBet.setBounds(102, 420, 130, 30);
-		getContentPane().add(btnBet);
 
 	}
 
@@ -215,16 +203,13 @@ public class FindQuestionsGUI extends JFrame {
 	 */
 	public class NonEditableTableModel extends DefaultTableModel
 	{	private static final long serialVersionUID = 1L;
-		
+
 		public NonEditableTableModel(Object[][] data, Object[] columnNames) {
 			super(data, columnNamesEvents);
 		}
 	
 		public boolean isCellEditable (int row, int column)
 		   {
-			 if (column == 3) {
-				return true;
-			}
 		       return false;
 		   }
 	}
@@ -232,4 +217,5 @@ public class FindQuestionsGUI extends JFrame {
 	private void jButton2_actionPerformed(ActionEvent e) {
 		this.setVisible(false);
 	}
+
 }

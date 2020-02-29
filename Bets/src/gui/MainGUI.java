@@ -122,7 +122,7 @@ public class MainGUI extends JFrame {
 					public void actionPerformed(java.awt.event.ActionEvent e) {
 						BLFacade facade=MainGUI.getBusinessLogic();
 						//Vector<Event> events=facade.getAllEvents();
-						JFrame a = new CreateQuestionGUI(new Vector<Event>());
+						JDialog a = new CreateQuestionGUI(new Vector<Event>());
 						a.setVisible(true);
 					}
 				});
@@ -143,7 +143,7 @@ public class MainGUI extends JFrame {
 			jButtonQueryQueries.setText(ResourceBundle.getBundle("Etiquetas").getString("QueryQueries"));
 			jButtonQueryQueries.addActionListener(new java.awt.event.ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
-					JFrame a = new FindQuestionsGUI();
+					JDialog a = new FindQuestionsGUI();
 
 					a.setVisible(true);
 				}
@@ -240,7 +240,7 @@ public class MainGUI extends JFrame {
 				}
 			});
 		}
-		return btnRegister;
+		return btnRegister; 
 	}
 	private JPanel getPanel() {
 		if (panel == null) {
