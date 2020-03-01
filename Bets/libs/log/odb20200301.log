@@ -3743,3 +3743,29 @@ Database 'C:\Users\Usuario\git\Sprint_1\Bets\resources\bets.temp' is opened by 1
 [2020-03-01 13:31:54 #10 store] 
 Database 'C:\Users\Usuario\git\Sprint_1\Bets\resources\bets.temp' is closed by 13900@DESKTOP-00OS7EM
 
+------------------------------------------------------------------------------------------------------------------------
+
+[2020-03-01 13:57:51 #1 store] 
+Database 'C:\Users\Usuario\git\Sprint_1\Bets\resources\bets.temp' is opened by 14532@DESKTOP-00OS7EM
+
+[2020-03-01 13:57:51 #2 type] 
+Type domain.User is not enhanced.
+
+[2020-03-01 13:57:51 #3 type] 
+Type domain.Bet is not enhanced.
+
+[2020-03-01 13:57:51 #4 type] 
+Type domain.Question is not enhanced.
+
+[2020-03-01 13:57:51 #5 type] 
+Type domain.Event is not enhanced.
+
+[2020-03-01 13:57:51 #6 store] 
+Database 'C:\Users\Usuario\git\Sprint_1\Bets\resources\bets.temp' is closed by 14532@DESKTOP-00OS7EM
+
+[2020-03-01 13:57:53 #7 store] 
+Database 'C:\Users\Usuario\git\Sprint_1\Bets\resources\bets.temp' is opened by 14532@DESKTOP-00OS7EM
+
+[2020-03-01 13:57:53 #8 store] 
+Database 'C:\Users\Usuario\git\Sprint_1\Bets\resources\bets.temp' is closed by 14532@DESKTOP-00OS7EM
+
