@@ -47,7 +47,7 @@ public class RegisterGUI extends JDialog {
 	JLabel nameErrorLabel = new JLabel("");
 	private final ButtonGroup buttonGroup = new ButtonGroup();
 
-	/**
+	 /**
 	 * Create the frame.
 	 */
 	public RegisterGUI(boolean isadmin) {

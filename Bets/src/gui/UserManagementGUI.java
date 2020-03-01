@@ -261,7 +261,7 @@ public class UserManagementGUI extends JDialog{
 		btnAddAUser.addActionListener(new ActionListener() {	
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				RegisterGUI j = new RegisterGUI(true);
+				JDialog j = new RegisterGUI(true);
 				j.setVisible(true);
 			}
 		});
