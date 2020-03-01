@@ -11,6 +11,7 @@ import domain.User;
 import exceptions.invalidID;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 
@@ -30,6 +31,7 @@ import javax.swing.ButtonGroup;
 
 public class RegisterGUI extends JDialog {
 	
+	private RegisterGUI guiInstance;
 	private boolean adminview;
 	
 	private JTextField usernameTextField;
@@ -51,7 +53,7 @@ public class RegisterGUI extends JDialog {
 	 * Create the frame.
 	 */
 	public RegisterGUI(boolean isadmin) {
-		
+		RegisterGUI guiInstance = this;
 		adminview = isadmin;
 		setModal(true);
 		
@@ -196,8 +198,7 @@ public class RegisterGUI extends JDialog {
 					try {
 						System.out.println(username + " " + pass + " " + passconfirm + " " + name + " " + surname + " " + email);
 						User u = facade.registerUser(username, pass, name, surname, email, rights);
-						JFrame um = new UserMainGUI(u);
-						um.setVisible(true);
+						JOptionPane.showMessageDialog(guiInstance, "Registration sucessfull");
 						dispose();	
 					}
 					catch (invalidID e) {

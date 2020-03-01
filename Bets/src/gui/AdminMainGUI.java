@@ -73,7 +73,7 @@ public class AdminMainGUI extends JFrame {
 		super();
 		this.user = u;
 		getIDLabel().setText(u.getID());
-		getIncomeLabel().setText(u.getCash() + "$");
+		getIncomeLabel().setText(u.getCash() + "€");
 		addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowClosing(WindowEvent e) {
@@ -348,7 +348,7 @@ public class AdminMainGUI extends JFrame {
 		if (selectOptLabel == null) {
 			selectOptLabel = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("SelectOption")); //$NON-NLS-1$ //$NON-NLS-2$
 			selectOptLabel.setHorizontalAlignment(SwingConstants.CENTER);
-			selectOptLabel.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 16));
+			selectOptLabel.setFont(new Font("Tahoma", Font.BOLD, 16));
 			selectOptLabel.setBounds(170, 182, 146, 24);
 		}
 		return selectOptLabel;

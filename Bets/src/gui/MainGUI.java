@@ -1,5 +1,7 @@
 package gui;
 
+import javax.imageio.ImageIO;
+
 /**
  * @author Software Engineering teachers
  */
@@ -22,6 +24,8 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.io.File;
+import java.io.IOException;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
@@ -30,6 +34,9 @@ import java.util.Vector;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.GridBagLayout;
+import java.awt.GridBagConstraints;
+import java.awt.Insets;
 
 
 public class MainGUI extends JFrame {
@@ -37,7 +44,6 @@ public class MainGUI extends JFrame {
 	private static final long serialVersionUID = 1L;
 
 	private JPanel jContentPane = null;
-	private JButton jButtonCreateQuery = null;
 	private JButton jButtonQueryQueries = null;
 	private JButton  btnLogIn = null;
 	private JButton  btnRegister = null; 
@@ -56,13 +62,15 @@ public class MainGUI extends JFrame {
 	private JRadioButton rdbtnNewRadioButton_2;
 	private JPanel panel;
 	private final ButtonGroup buttonGroup = new ButtonGroup();
+	private JLabel titleLabel;
+	private JLabel logoLabel;
 
 	/**
 	 * This is the default constructor
 	 */
 	public MainGUI() {
 		super();
-		
+		this.setResizable(false);
 		addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowClosing(WindowEvent e) {
@@ -89,7 +97,7 @@ public class MainGUI extends JFrame {
 	 */
 	private void initialize() {
 		// this.setSize(271, 295);
-		this.setBounds(600, 200, 495, 290);
+		this.setBounds(600, 200, 467, 431);
 		this.setContentPane(getJContentPane());
 		this.setTitle(ResourceBundle.getBundle("Etiquetas").getString("MainTitle"));
 	}
@@ -102,43 +110,60 @@ public class MainGUI extends JFrame {
 	private JPanel getJContentPane() {
 		if (jContentPane == null) {
 			jContentPane = new JPanel();
-			jContentPane.setLayout(new GridLayout(4, 1, 0, 0));
-			jContentPane.add(getLblNewLabel());
-			jContentPane.add(getBoton3());
-			jContentPane.add(getBoton2());
-			jContentPane.add(getPanel());
+			GridBagLayout gbl_jContentPane = new GridBagLayout();
+			gbl_jContentPane.columnWidths = new int[]{36, 21, 0, 109, 61, 119, 10, 0, 21, 0};
+			gbl_jContentPane.rowHeights = new int[]{-4, 27, 0, 25, 36, 57, 57, 17, 31, 10, 10, 0};
+			gbl_jContentPane.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+			gbl_jContentPane.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+			jContentPane.setLayout(gbl_jContentPane);
+			GridBagConstraints gbc_titleLabel = new GridBagConstraints();
+			gbc_titleLabel.gridwidth = 2;
+			gbc_titleLabel.insets = new Insets(0, 0, 5, 5);
+			gbc_titleLabel.gridx = 3;
+			gbc_titleLabel.gridy = 2;
+			jContentPane.add(getTitleLabel(), gbc_titleLabel);
+			GridBagConstraints gbc_logoLabel = new GridBagConstraints();
+			gbc_logoLabel.insets = new Insets(0, 0, 5, 5);
+			gbc_logoLabel.gridx = 5;
+			gbc_logoLabel.gridy = 2;
+			jContentPane.add(getLabel_1(), gbc_logoLabel);
+			GridBagConstraints gbc_jLabelSelectOption = new GridBagConstraints();
+			gbc_jLabelSelectOption.gridwidth = 6;
+			gbc_jLabelSelectOption.fill = GridBagConstraints.VERTICAL;
+			gbc_jLabelSelectOption.insets = new Insets(0, 0, 5, 5);
+			gbc_jLabelSelectOption.gridx = 2;
+			gbc_jLabelSelectOption.gridy = 4;
+			jContentPane.add(getLblSelectOption(), gbc_jLabelSelectOption);
+			GridBagConstraints gbc_btnLogIn = new GridBagConstraints();
+			gbc_btnLogIn.fill = GridBagConstraints.BOTH;
+			gbc_btnLogIn.gridwidth = 3;
+			gbc_btnLogIn.insets = new Insets(0, 0, 5, 5);
+			gbc_btnLogIn.gridx = 2;
+			gbc_btnLogIn.gridy = 5;
+			jContentPane.add(getBtnLogIn(), gbc_btnLogIn);
+			GridBagConstraints gbc_btnRegister = new GridBagConstraints();
+			gbc_btnRegister.fill = GridBagConstraints.BOTH;
+			gbc_btnRegister.gridwidth = 3;
+			gbc_btnRegister.insets = new Insets(0, 0, 5, 5);
+			gbc_btnRegister.gridx = 5;
+			gbc_btnRegister.gridy = 5;
+			jContentPane.add(getBtnRegister(), gbc_btnRegister);
+			GridBagConstraints gbc_jButtonQueryQueries = new GridBagConstraints();
+			gbc_jButtonQueryQueries.gridwidth = 6;
+			gbc_jButtonQueryQueries.fill = GridBagConstraints.BOTH;
+			gbc_jButtonQueryQueries.insets = new Insets(0, 0, 5, 5);
+			gbc_jButtonQueryQueries.gridx = 2;
+			gbc_jButtonQueryQueries.gridy = 6;
+			jContentPane.add(getBoton3(), gbc_jButtonQueryQueries);
+			GridBagConstraints gbc_panel = new GridBagConstraints();
+			gbc_panel.gridwidth = 4;
+			gbc_panel.insets = new Insets(0, 0, 5, 5);
+			gbc_panel.fill = GridBagConstraints.VERTICAL;
+			gbc_panel.gridx = 3;
+			gbc_panel.gridy = 8;
+			jContentPane.add(getPanel(), gbc_panel);
 		}
 		return jContentPane;
-	}
-
-
-	/**
-	 * This method initializes boton1
-	 * 
-	 * @return javax.swing.JButton
-	 */
-	private JButton getBoton2() {
-		if (jButtonCreateQuery == null) {
-			jButtonCreateQuery = new JButton();
-			jButtonCreateQuery.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent e) {
-				}
-			});
-			jButtonCreateQuery.setEnabled(false);
-			if (jButtonCreateQuery.isEnabled()) {
-				jButtonCreateQuery.setText(ResourceBundle.getBundle("Etiquetas").getString("CreateQuery"));
-				jButtonCreateQuery.addActionListener(new java.awt.event.ActionListener() {
-					public void actionPerformed(java.awt.event.ActionEvent e) {
-						BLFacade facade=MainGUI.getBusinessLogic();
-						//Vector<Event> events=facade.getAllEvents();
-						JDialog a = new CreateQuestionGUI(new Vector<Event>());
-						a.setVisible(true);
-					}
-				});
-			}
-
-		}
-		return jButtonCreateQuery;
 	}
 
 	/**
@@ -162,10 +187,10 @@ public class MainGUI extends JFrame {
 	}
 
 
-	private JLabel getLblNewLabel() {
+	private JLabel getLblSelectOption() {
 		if (jLabelSelectOption == null) {
 			jLabelSelectOption = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("SelectOption"));
-			jLabelSelectOption.setFont(new Font("Tahoma", Font.BOLD, 13));
+			jLabelSelectOption.setFont(new Font("Tahoma", Font.BOLD, 16));
 			jLabelSelectOption.setForeground(Color.BLACK);
 			jLabelSelectOption.setHorizontalAlignment(SwingConstants.CENTER);
 		}
@@ -257,8 +282,6 @@ public class MainGUI extends JFrame {
 			panel.add(getRdbtnNewRadioButton_1());
 			panel.add(getRdbtnNewRadioButton_2());
 			panel.add(getRdbtnNewRadioButton());
-			panel.add(getBtnLogIn());
-			panel.add(getBtnRegister());
 		}
 		return panel;
 	}
@@ -266,9 +289,25 @@ public class MainGUI extends JFrame {
 	private void redibujar() {
 		jLabelSelectOption.setText(ResourceBundle.getBundle("Etiquetas").getString("SelectOption"));
 		jButtonQueryQueries.setText(ResourceBundle.getBundle("Etiquetas").getString("QueryQueries"));
-		jButtonCreateQuery.setText(ResourceBundle.getBundle("Etiquetas").getString("CreateQuery"));
 		this.setTitle(ResourceBundle.getBundle("Etiquetas").getString("MainTitle"));
 	}
 
+	private JLabel getTitleLabel() {
+		if (titleLabel == null) {
+			titleLabel = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("BetAndRuin")); //$NON-NLS-1$ //$NON-NLS-2$
+			titleLabel.setFont(new Font("Source Sans Pro Black", Font.BOLD, 25));
+		}
+		return titleLabel;
+	}
+	private JLabel getLabel_1() {
+		if (logoLabel == null) {
+			try {
+				logoLabel = new JLabel(new ImageIcon(ImageIO.read(new File("images/beticon.png"))));//
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		return logoLabel;
+	}
 } // @jve:decl-index=0:visual-constraint="0,0"
 

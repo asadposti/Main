@@ -14,6 +14,8 @@ import java.io.File;
 import java.io.IOException;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import javax.swing.JPasswordField;
 import java.awt.Color;
@@ -26,6 +28,7 @@ import javax.swing.ImageIcon;
 
 public class UserLoginGUI extends JFrame {
 
+	private UserLoginGUI guiInstance;
 	private JPanel contentPane;
 	private HintTextField usernameTextField;
 	private JPasswordField passwordField;
@@ -40,6 +43,9 @@ public class UserLoginGUI extends JFrame {
 	 * Create the frame.
 	 */
 	public UserLoginGUI() {
+		
+		
+		setResizable(false);
 		setBounds(600, 200, 486, 332);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -99,6 +105,7 @@ public class UserLoginGUI extends JFrame {
 						String pass =  new String (passwordField.getPassword());
 						try {
 							User u = facade.checkCredentials(username, pass);
+							JOptionPane.showMessageDialog(guiInstance, "Login successful");
 							if(u.isAdmin()){
 								JFrame m = new AdminMainGUI(u);
 								m.setVisible(true);
