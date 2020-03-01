@@ -195,7 +195,9 @@ public class RegisterGUI extends JDialog {
 				else {	
 					try {
 						System.out.println(username + " " + pass + " " + passconfirm + " " + name + " " + surname + " " + email);
-						facade.registerUser(username, pass, name, surname, email, rights);
+						User u = facade.registerUser(username, pass, name, surname, email, rights);
+						JFrame um = new UserMainGUI(u);
+						um.setVisible(true);
 						dispose();	
 					}
 					catch (invalidID e) {
