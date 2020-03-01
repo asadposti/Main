@@ -281,9 +281,6 @@ public class UserFindQuestionsGUI extends JDialog {
 		});
 		btnBet.setBounds(497, 296, 117, 25);
 		getContentPane().add(btnBet);
-
-
-
 	}
 
 	private void jButton2_actionPerformed(ActionEvent e) {

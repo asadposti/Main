@@ -221,8 +221,7 @@ public class DataAccess  {
 		TypedQuery<Event> query = db.createQuery("SELECT ev FROM Event ev WHERE ev.eventDate=?1",Event.class);   
 		query.setParameter(1, date);
 		List<Event> events = query.getResultList();
-	 	 for (Event ev:events){
-	 	   System.out.println(ev.toString());		 
+	 	 for (Event ev:events){	 
 		   res.add(ev);
 		  }
 	 	return res;
@@ -246,8 +245,7 @@ public class DataAccess  {
 		query.setParameter(1, firstDayMonthDate);
 		query.setParameter(2, lastDayMonthDate);
 		List<Date> dates = query.getResultList();
-	 	 for (Date d:dates){
-	 	   System.out.println(d.toString());		 
+	 	 for (Date d:dates){	 
 		   res.add(d);
 		  }
 	 	return res;

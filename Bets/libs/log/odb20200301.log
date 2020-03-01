@@ -3743,3 +3743,127 @@ Database 'C:\Users\Usuario\git\Sprint_1\Bets\resources\bets.temp' is opened by 1
 [2020-03-01 13:31:54 #10 store] 
 Database 'C:\Users\Usuario\git\Sprint_1\Bets\resources\bets.temp' is closed by 13900@DESKTOP-00OS7EM
 
+------------------------------------------------------------------------------------------------------------------------
+
+[2020-03-01 13:40:45 #1 store] 
+Database 'C:\Users\Usuario\git\Sprint_1\Bets\resources\bets.temp' is opened by 9712@DESKTOP-00OS7EM
+
+[2020-03-01 13:40:45 #2 type.registry] 
+New type domain.User
+
+[2020-03-01 13:40:45 #3 type] 
+Type domain.User is not enhanced.
+
+[2020-03-01 13:40:45 #4 type.registry] 
+New type domain.Bet
+
+[2020-03-01 13:40:45 #5 type.registry] 
+New type java.util.ArrayList<domain.Bet>
+
+[2020-03-01 13:40:45 #6 type] 
+Type domain.Bet is not enhanced.
+
+[2020-03-01 13:40:45 #7 type.registry] 
+New type domain.Question
+
+[2020-03-01 13:40:45 #8 type] 
+Type domain.Question is not enhanced.
+
+[2020-03-01 13:40:45 #9 type.registry] 
+New type domain.Event
+
+[2020-03-01 13:40:45 #10 type] 
+Type domain.Event is not enhanced.
+
+[2020-03-01 13:40:45 #11 type.registry] 
+New type java.util.Vector<domain.Question>
+
+[2020-03-01 13:40:45 #12 store] 
+Database 'C:\Users\Usuario\git\Sprint_1\Bets\resources\bets.temp' is closed by 9712@DESKTOP-00OS7EM
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2020-03-01 13:43:52 #1 store] 
+Database 'C:\Users\Usuario\git\Sprint_1\Bets\resources\bets.temp' is opened by 9612@DESKTOP-00OS7EM
+
+[2020-03-01 13:43:52 #2 type.registry] 
+New type domain.User
+
+[2020-03-01 13:43:52 #3 type] 
+Type domain.User is not enhanced.
+
+[2020-03-01 13:43:52 #4 type.registry] 
+New type domain.Bet
+
+[2020-03-01 13:43:52 #5 type.registry] 
+New type java.util.ArrayList<domain.Bet>
+
+[2020-03-01 13:43:52 #6 type] 
+Type domain.Bet is not enhanced.
+
+[2020-03-01 13:43:52 #7 type.registry] 
+New type domain.Question
+
+[2020-03-01 13:43:52 #8 type] 
+Type domain.Question is not enhanced.
+
+[2020-03-01 13:43:52 #9 type.registry] 
+New type domain.Event
+
+[2020-03-01 13:43:52 #10 type] 
+Type domain.Event is not enhanced.
+
+[2020-03-01 13:43:52 #11 type.registry] 
+New type java.util.Vector<domain.Question>
+
+[2020-03-01 13:43:52 #12 type.registry] 
+New type java.util.ArrayList<java.lang.Object>
+
+[2020-03-01 13:43:52 #13 type.registry] 
+New type java.util.Vector<java.lang.Object>
+
+[2020-03-01 13:43:52 #14 store] 
+Database 'C:\Users\Usuario\git\Sprint_1\Bets\resources\bets.temp' is closed by 9612@DESKTOP-00OS7EM
+
+[2020-03-01 13:43:56 #15 store] 
+Database 'C:\Users\Usuario\git\Sprint_1\Bets\resources\bets.temp' is opened by 9612@DESKTOP-00OS7EM
+
+[2020-03-01 13:43:56 #16 store] 
+Database 'C:\Users\Usuario\git\Sprint_1\Bets\resources\bets.temp' is closed by 9612@DESKTOP-00OS7EM
+
+[2020-03-01 13:43:58 #17 store] 
+Database 'C:\Users\Usuario\git\Sprint_1\Bets\resources\bets.temp' is opened by 9612@DESKTOP-00OS7EM
+
+[2020-03-01 13:43:58 #18 store] 
+Database 'C:\Users\Usuario\git\Sprint_1\Bets\resources\bets.temp' is closed by 9612@DESKTOP-00OS7EM
+
+[2020-03-01 13:43:58 #19 store] 
+Database 'C:\Users\Usuario\git\Sprint_1\Bets\resources\bets.temp' is opened by 9612@DESKTOP-00OS7EM
+
+[2020-03-01 13:43:58 #20 store] 
+Database 'C:\Users\Usuario\git\Sprint_1\Bets\resources\bets.temp' is closed by 9612@DESKTOP-00OS7EM
+
+[2020-03-01 13:44:01 #21 store] 
+Database 'C:\Users\Usuario\git\Sprint_1\Bets\resources\bets.temp' is opened by 9612@DESKTOP-00OS7EM
+
+[2020-03-01 13:44:01 #22 store] 
+Database 'C:\Users\Usuario\git\Sprint_1\Bets\resources\bets.temp' is closed by 9612@DESKTOP-00OS7EM
+
+[2020-03-01 13:44:01 #23 store] 
+Database 'C:\Users\Usuario\git\Sprint_1\Bets\resources\bets.temp' is opened by 9612@DESKTOP-00OS7EM
+
+[2020-03-01 13:44:01 #24 store] 
+Database 'C:\Users\Usuario\git\Sprint_1\Bets\resources\bets.temp' is closed by 9612@DESKTOP-00OS7EM
+
+[2020-03-01 13:44:02 #25 store] 
+Database 'C:\Users\Usuario\git\Sprint_1\Bets\resources\bets.temp' is opened by 9612@DESKTOP-00OS7EM
+
+[2020-03-01 13:44:02 #26 store] 
+Database 'C:\Users\Usuario\git\Sprint_1\Bets\resources\bets.temp' is closed by 9612@DESKTOP-00OS7EM
+
+[2020-03-01 13:44:02 #27 store] 
+Database 'C:\Users\Usuario\git\Sprint_1\Bets\resources\bets.temp' is opened by 9612@DESKTOP-00OS7EM
+
+[2020-03-01 13:44:02 #28 store] 
+Database 'C:\Users\Usuario\git\Sprint_1\Bets\resources\bets.temp' is closed by 9612@DESKTOP-00OS7EM
+
