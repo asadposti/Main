@@ -1,42 +1,23 @@
 package gui;
 
-
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-
 import businessLogic.BLFacade;
 import domain.User;
 import exceptions.invalidID;
 import exceptions.invalidPW;
-
 import javax.imageio.ImageIO;
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
-import javax.swing.JDialog;
-import javax.swing.JTextField;
-
-
 import java.awt.event.ActionListener;
-import java.awt.event.FocusEvent;
-import java.awt.event.FocusListener;
 import java.io.File;
 import java.io.IOException;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
 import java.awt.Font;
-
-
 import javax.swing.JPasswordField;
-import javax.swing.LayoutStyle.ComponentPlacement;
-import javax.swing.JTextArea;
 import java.awt.Color;
-import java.awt.SystemColor;
-import javax.swing.UIManager;
 import javax.swing.SwingConstants;
-import javax.swing.JTextPane;
 import java.awt.GridBagLayout;
 import java.awt.Image;
 import java.awt.GridBagConstraints;
@@ -209,45 +190,4 @@ public class UserLoginGUI extends JFrame {
 		gbc_cancelButton.gridy = 9;
 		contentPane.add(cancelButton, gbc_cancelButton);
 	}
-	
-	/**
-	 * Auxiliary class for textfields with an initial hint text
-	 *
-	 */
-	class HintTextField extends JTextField implements FocusListener {
-		private static final long serialVersionUID = 1L;
-		
-		private final String hint;
-		  private boolean showingHint;
-
-		  public HintTextField(final String hint) {
-		    super(hint);
-		    this.hint = hint;
-		    this.showingHint = true;
-		    super.addFocusListener(this);
-		    this.setForeground(new Color(169, 169, 169));
-		  }
-
-		  @Override
-		  public void focusGained(FocusEvent e) {
-		    if(this.getText().isEmpty()) {
-		      super.setText("");
-		      showingHint = false;
-		      this.setForeground(new Color(0, 0, 0));
-		    }
-		  }
-		  @Override
-		  public void focusLost(FocusEvent e) {
-		    if(this.getText().isEmpty()) {
-		      super.setText(hint);
-		      showingHint = true;
-		      this.setForeground(new Color(169, 169, 169));
-		    }
-		  }
-
-		  @Override
-		  public String getText() {
-		    return showingHint ? "" : super.getText();
-		  }
-		}
 }

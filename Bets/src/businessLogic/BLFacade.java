@@ -2,16 +2,14 @@ package businessLogic;
 
 import java.util.Vector;
 import java.util.Date;
-
-
-
-
+import java.util.List;
 
 //import domain.Booking;
 import domain.Question;
 import domain.User;
 import domain.Event;
 import exceptions.EventFinished;
+import exceptions.InsufficientCash;
 import exceptions.QuestionAlreadyExist;
 import exceptions.invalidID;
 import exceptions.invalidPW;
@@ -79,6 +77,39 @@ public interface BLFacade  {
 	 * @throws invalidID	exception thrown when no user entity with the input ID exists in the database.
 	 */
 	@WebMethod public User checkCredentials(String ID, String password) throws invalidID, invalidPW;
+		
+	/**
+	 * 
+	 * @param iD
+	 * @param nam
+	 * @param surn
+	 * @param Email
+	 * @return
+	 */ 
+	@WebMethod public List<User> searchByCriteria(String searchtext, int filter);
+	
+	/**
+	 * 
+	 * @param searchtext
+	 * @param filter
+	 * @return
+	 */
+	@WebMethod public void removeUser(String ID);
+	
+	/**
+	 * 
+	 * @param searchtext
+	 * @param filter
+	 * @return
+	 */
+	@WebMethod public void updateUserInfo(String key, String ID,String name,String surname, String email,boolean isAdmin) throws invalidID;
+	
+	/**
+	 * 
+	 * @param q
+	 * @param amount
+	 */
+	@WebMethod public void placeBet(Question q, User u, float amount)throws InsufficientCash;
 	
 	/**
 	 * This method calls the data access to initialize the database with some events and questions.

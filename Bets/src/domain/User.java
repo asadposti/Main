@@ -105,6 +105,14 @@ public class User {
 		return cash;
 	}
 	
+	public String statusToString() {
+		if(this.isAdmin) {
+			return("Admin");
+		}
+		else {
+			return("User");
+		}
+	}
 	/**
 	 * Registers the bet performed by a user
 	 * @param q			the question the bet has been placed on.
@@ -115,6 +123,9 @@ public class User {
 		this.cash -= amount;
 	}
 
+	public void addBet(Bet b) {
+		bets.add(b);
+	}
 	public void addCash(float amount) {
 		this.cash += amount;
 	}

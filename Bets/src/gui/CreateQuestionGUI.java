@@ -69,7 +69,6 @@ public class CreateQuestionGUI extends JDialog {
 		scrollPaneEvents.setBounds(new Rectangle(25, 44, 346, 116));
 
 		jButtonCreate.setBounds(new Rectangle(100, 275, 130, 30));
-		jButtonCreate.setEnabled(false);
 
 		jButtonCreate.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

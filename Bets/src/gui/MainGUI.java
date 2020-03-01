@@ -8,13 +8,22 @@ package gui;
 import javax.swing.*;
 
 import domain.Event;
+import domain.Question;
+import domain.User;
+import exceptions.EventFinished;
+import exceptions.QuestionAlreadyExist;
+import exceptions.invalidID;
+import exceptions.invalidPW;
 import businessLogic.BLFacade;
+import businessLogic.BLFacadeImplementation;
 
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 import java.util.ResourceBundle;
 import java.util.Vector;
@@ -53,7 +62,7 @@ public class MainGUI extends JFrame {
 	 */
 	public MainGUI() {
 		super();
-
+		
 		addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowClosing(WindowEvent e) {
@@ -234,9 +243,8 @@ public class MainGUI extends JFrame {
 			btnRegister.setBounds(342, 5, 73, 23);
 			btnRegister.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
-					JFrame login = new RegisterGUI();
+					JDialog login = new RegisterGUI(false);
 					login.setVisible(true);
-					dispose();
 				}
 			});
 		}

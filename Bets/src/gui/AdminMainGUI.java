@@ -186,7 +186,7 @@ public class AdminMainGUI extends JFrame {
 			jButtonQueryQueries.setEnabled(true);
 			jButtonQueryQueries.addActionListener(new java.awt.event.ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
-					JDialog a = new FindQuestionsGUI();
+					JDialog a = new UserFindQuestionsGUI(user);
 
 					a.setVisible(true);
 				}

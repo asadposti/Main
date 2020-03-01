@@ -12,6 +12,8 @@ import exceptions.invalidID;
 
 import javax.swing.JLabel;
 import javax.swing.JButton;
+import javax.swing.JDialog;
+
 import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
@@ -22,11 +24,14 @@ import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import java.awt.Font;
 import java.awt.Color;
+import javax.swing.JRadioButton;
+import javax.swing.ButtonGroup;
 
 
-public class RegisterGUI extends JFrame {
-
-
+public class RegisterGUI extends JDialog {
+	
+	private boolean adminview;
+	
 	private JTextField usernameTextField;
 	private HintTextField emailTextField;
 	private JTextField nameTextField;
@@ -40,38 +45,34 @@ public class RegisterGUI extends JFrame {
 	JLabel confirmPwErrorLabel = new JLabel("");
 	JLabel pwErrorLabel = new JLabel("");
 	JLabel nameErrorLabel = new JLabel("");
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					RegisterGUI frame = new RegisterGUI();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+	private final ButtonGroup buttonGroup = new ButtonGroup();
 
 	/**
 	 * Create the frame.
 	 */
-	public RegisterGUI() {
+	public RegisterGUI(boolean isadmin) {
+		
+		adminview = isadmin;
+		setModal(true);
+		
 		setBounds(600, 200, 455,474);
 		GridBagLayout gridBagLayout = new GridBagLayout();
-		gridBagLayout.columnWidths = new int[]{35, 20, 148, 20, 25, 20, 152, 20, 35, 0};
+		gridBagLayout.columnWidths = new int[]{35, 20, 120, 20, 25, 0, 60, 70, 20, 35, 0};
 		gridBagLayout.rowHeights = new int[]{20, 15, 20, 12, 25, 28, 20, 25, 28, 20, 25, 28, 0, 25, 28, 23, 25, 0};
-		gridBagLayout.columnWeights = new double[]{0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, Double.MIN_VALUE};
+		gridBagLayout.columnWeights = new double[]{0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0, 1.0, 0.0, 0.0, Double.MIN_VALUE};
 		gridBagLayout.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 1.0, 0.0, 0.0, 1.0, 0.0, 0.0, 1.0, 0.0, 0.0, Double.MIN_VALUE};
 		getContentPane().setLayout(gridBagLayout);
 		
-		JLabel lblInsertRegistrationData = new JLabel("Insert registration data");
+		JLabel lblInsertRegistrationData;
+		if (adminview) {
+			lblInsertRegistrationData = new JLabel("Insert new user data");
+		}
+		else {
+			lblInsertRegistrationData = new JLabel("Insert registration data");
+		}
 		lblInsertRegistrationData.setFont(new Font("Tahoma", Font.BOLD, 16));
 		GridBagConstraints gbc_lblInsertRegistrationData = new GridBagConstraints();
-		gbc_lblInsertRegistrationData.gridwidth = 5;
+		gbc_lblInsertRegistrationData.gridwidth = 6;
 		gbc_lblInsertRegistrationData.insets = new Insets(0, 0, 5, 5);
 		gbc_lblInsertRegistrationData.gridx = 2;
 		gbc_lblInsertRegistrationData.gridy = 1;
@@ -86,6 +87,15 @@ public class RegisterGUI extends JFrame {
 		gbc_lblUsername.gridy = 3;
 		getContentPane().add(lblUsername, gbc_lblUsername);
 		
+		JLabel lblRights = new JLabel("Rights:");
+		GridBagConstraints gbc_lblRights = new GridBagConstraints();
+		gbc_lblRights.anchor = GridBagConstraints.WEST;
+		gbc_lblRights.gridwidth = 4;
+		gbc_lblRights.insets = new Insets(0, 0, 5, 5);
+		gbc_lblRights.gridx = 5;
+		gbc_lblRights.gridy = 3;
+		getContentPane().add(lblRights, gbc_lblRights);
+		
 		usernameTextField = new JTextField();
 		usernameTextField.setColumns(10);
 		GridBagConstraints gbc_usernameTextField = new GridBagConstraints();
@@ -95,6 +105,26 @@ public class RegisterGUI extends JFrame {
 		gbc_usernameTextField.gridx = 1;
 		gbc_usernameTextField.gridy = 4;
 		getContentPane().add(usernameTextField, gbc_usernameTextField);
+		
+		
+		JRadioButton rdbtnUser = new JRadioButton("user");
+		buttonGroup.add(rdbtnUser);
+		rdbtnUser.setSelected(true);
+		GridBagConstraints gbc_rdbtnUser = new GridBagConstraints();
+		gbc_rdbtnUser.gridwidth = 2;
+		gbc_rdbtnUser.insets = new Insets(0, 0, 5, 5);
+		gbc_rdbtnUser.gridx = 5;
+		gbc_rdbtnUser.gridy = 4;
+		getContentPane().add(rdbtnUser, gbc_rdbtnUser);
+		
+		JRadioButton rdbtnAdmin = new JRadioButton("Admin.");
+		buttonGroup.add(rdbtnAdmin);
+		GridBagConstraints gbc_rdbtnAdmin = new GridBagConstraints();
+		gbc_rdbtnAdmin.gridwidth = 2;
+		gbc_rdbtnAdmin.insets = new Insets(0, 0, 5, 5);
+		gbc_rdbtnAdmin.gridx = 7;
+		gbc_rdbtnAdmin.gridy = 4;
+		getContentPane().add(rdbtnAdmin, gbc_rdbtnAdmin);
 		
 
 		usernameErrorLabel.setForeground(new Color(255, 51, 51));
@@ -117,12 +147,18 @@ public class RegisterGUI extends JFrame {
 		
 		JLabel lblConfirmPassword = new JLabel("Confirm password:");
 		GridBagConstraints gbc_lblConfirmPassword = new GridBagConstraints();
-		gbc_lblConfirmPassword.gridwidth = 3;
+		gbc_lblConfirmPassword.gridwidth = 4;
 		gbc_lblConfirmPassword.anchor = GridBagConstraints.WEST;
 		gbc_lblConfirmPassword.insets = new Insets(0, 0, 5, 5);
 		gbc_lblConfirmPassword.gridx = 5;
 		gbc_lblConfirmPassword.gridy = 6;
 		getContentPane().add(lblConfirmPassword, gbc_lblConfirmPassword);
+		
+		if(!adminview) {
+			lblRights.setVisible(false);
+			rdbtnAdmin.setVisible(false);
+			rdbtnUser.setVisible(false);
+		}
 		
 		JButton registerButton = new JButton("Register");
 		registerButton.addActionListener(new ActionListener() {
@@ -144,6 +180,8 @@ public class RegisterGUI extends JFrame {
 				String name = nameTextField.getText();
 				String surname = surnameTextField.getText();
 				String email = emailTextField.getText();
+				boolean rights = rdbtnAdmin.isSelected();
+
 				
 				if (username.equals("") || pass.equals("") || name.equals("") || surname.equals("") || email.equals("")) {
 					emailErrorLabel.setText("Please fill all areas");
@@ -157,9 +195,7 @@ public class RegisterGUI extends JFrame {
 				else {	
 					try {
 						System.out.println(username + " " + pass + " " + passconfirm + " " + name + " " + surname + " " + email);
-						User u = facade.registerUser(username, pass, name, surname, email, false);
-						JFrame m = new UserMainGUI(u);
-						m.setVisible(true);
+						facade.registerUser(username, pass, name, surname, email, rights);
 						dispose();	
 					}
 					catch (invalidID e) {
@@ -168,15 +204,6 @@ public class RegisterGUI extends JFrame {
 				}
 			}
 		});	
-		
-		JButton cancelButton = new JButton("Cancel");
-		cancelButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				JFrame user = new MainGUI();
-				user.setVisible(true);
-				dispose();
-			}
-		});
 		
 		passwordField = new JPasswordField();
 		GridBagConstraints gbc_passwordField = new GridBagConstraints();
@@ -189,7 +216,7 @@ public class RegisterGUI extends JFrame {
 		
 		passwordConfirmField = new JPasswordField();
 		GridBagConstraints gbc_passwordConfirmField = new GridBagConstraints();
-		gbc_passwordConfirmField.gridwidth = 3;
+		gbc_passwordConfirmField.gridwidth = 4;
 		gbc_passwordConfirmField.insets = new Insets(0, 0, 5, 5);
 		gbc_passwordConfirmField.fill = GridBagConstraints.BOTH;
 		gbc_passwordConfirmField.gridx = 5;
@@ -212,7 +239,7 @@ public class RegisterGUI extends JFrame {
 		gbc_confirmPwErrorLabel.gridwidth = 3;
 		gbc_confirmPwErrorLabel.anchor = GridBagConstraints.NORTHWEST;
 		gbc_confirmPwErrorLabel.insets = new Insets(0, 0, 5, 5);
-		gbc_confirmPwErrorLabel.gridx = 5;
+		gbc_confirmPwErrorLabel.gridx = 6;
 		gbc_confirmPwErrorLabel.gridy = 8;
 		getContentPane().add(confirmPwErrorLabel, gbc_confirmPwErrorLabel);
 		
@@ -228,7 +255,7 @@ public class RegisterGUI extends JFrame {
 		
 		JLabel lblSurname = new JLabel("Surname:");
 		GridBagConstraints gbc_lblSurname = new GridBagConstraints();
-		gbc_lblSurname.gridwidth = 3;
+		gbc_lblSurname.gridwidth = 4;
 		gbc_lblSurname.anchor = GridBagConstraints.NORTH;
 		gbc_lblSurname.fill = GridBagConstraints.HORIZONTAL;
 		gbc_lblSurname.insets = new Insets(0, 0, 5, 5);
@@ -251,7 +278,7 @@ public class RegisterGUI extends JFrame {
 		surnameTextField = new JTextField();
 		surnameTextField.setColumns(10);
 		GridBagConstraints gbc_surnameTextField = new GridBagConstraints();
-		gbc_surnameTextField.gridwidth = 3;
+		gbc_surnameTextField.gridwidth = 4;
 		gbc_surnameTextField.fill = GridBagConstraints.BOTH;
 		gbc_surnameTextField.insets = new Insets(0, 0, 5, 5);
 		gbc_surnameTextField.gridx = 5;
@@ -273,7 +300,7 @@ public class RegisterGUI extends JFrame {
 		gbc_surnameErrorLabel.gridwidth = 3;
 		gbc_surnameErrorLabel.anchor = GridBagConstraints.NORTHWEST;
 		gbc_surnameErrorLabel.insets = new Insets(0, 0, 5, 5);
-		gbc_surnameErrorLabel.gridx = 5;
+		gbc_surnameErrorLabel.gridx = 6;
 		gbc_surnameErrorLabel.gridy = 11;
 		getContentPane().add(surnameErrorLabel, gbc_surnameErrorLabel);
 		
@@ -290,7 +317,7 @@ public class RegisterGUI extends JFrame {
 		emailTextField.setToolTipText("");
 		emailTextField.setColumns(10);
 		GridBagConstraints gbc_emailTextField = new GridBagConstraints();
-		gbc_emailTextField.gridwidth = 7;
+		gbc_emailTextField.gridwidth = 8;
 		gbc_emailTextField.anchor = GridBagConstraints.NORTH;
 		gbc_emailTextField.fill = GridBagConstraints.HORIZONTAL;
 		gbc_emailTextField.insets = new Insets(0, 0, 5, 5);
@@ -302,7 +329,7 @@ public class RegisterGUI extends JFrame {
 		emailErrorLabel.setForeground(new Color(255, 51, 51));
 		GridBagConstraints gbc_emailErrorLabel = new GridBagConstraints();
 		gbc_emailErrorLabel.anchor = GridBagConstraints.NORTH;
-		gbc_emailErrorLabel.gridwidth = 7;
+		gbc_emailErrorLabel.gridwidth = 8;
 		gbc_emailErrorLabel.insets = new Insets(0, 0, 5, 5);
 		gbc_emailErrorLabel.gridx = 1;
 		gbc_emailErrorLabel.gridy = 14;
@@ -315,8 +342,16 @@ public class RegisterGUI extends JFrame {
 		gbc_registerButton.gridy = 15;
 		getContentPane().add(registerButton, gbc_registerButton);
 		
+		JButton cancelButton = new JButton("Cancel");
+		cancelButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+			}
+		});
+		
 		
 		GridBagConstraints gbc_cancelButton = new GridBagConstraints();
+		gbc_cancelButton.gridwidth = 2;
 		gbc_cancelButton.fill = GridBagConstraints.HORIZONTAL;
 		gbc_cancelButton.insets = new Insets(0, 0, 5, 5);
 		gbc_cancelButton.gridx = 6;
@@ -324,44 +359,4 @@ public class RegisterGUI extends JFrame {
 		getContentPane().add(cancelButton, gbc_cancelButton);	
 			}
 	
-	/**
-	 * Auxiliary class for textfields with an initial hint text
-	 *
-	 */
-	class HintTextField extends JTextField implements FocusListener {
-		private static final long serialVersionUID = 1L;
-		
-		private final String hint;
-		  private boolean showingHint;
-
-		  public HintTextField(final String hint) {
-		    super(hint);
-		    this.hint = hint;
-		    this.showingHint = true;
-		    super.addFocusListener(this);
-		    this.setForeground(new Color(169, 169, 169));
-		  }
-
-		  @Override
-		  public void focusGained(FocusEvent e) {
-		    if(this.getText().isEmpty()) {
-		      super.setText("");
-		      showingHint = false;
-		      this.setForeground(new Color(0, 0, 0));
-		    }
-		  }
-		  @Override
-		  public void focusLost(FocusEvent e) {
-		    if(this.getText().isEmpty()) {
-		      super.setText(hint);
-		      showingHint = true;
-		      this.setForeground(new Color(169, 169, 169));
-		    }
-		  }
-
-		  @Override
-		  public String getText() {
-		    return showingHint ? "" : super.getText();
-		  }
-		}
 }

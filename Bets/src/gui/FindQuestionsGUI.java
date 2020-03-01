@@ -4,6 +4,7 @@ import businessLogic.BLFacade;
 import configuration.UtilDate;
 
 import com.toedter.calendar.JCalendar;
+
 import domain.Question;
 import domain.Event;
 import javax.swing.*;
@@ -12,7 +13,6 @@ import java.awt.event.*;
 import java.beans.*;
 import java.text.DateFormat;
 import java.util.*;
-import javax.swing.table.DefaultTableModel;
 
 
 public class FindQuestionsGUI extends JDialog {
@@ -110,7 +110,6 @@ public class FindQuestionsGUI extends JDialog {
 					Date firstDay=UtilDate.trim(new Date(jCalendar1.getCalendar().getTime().getTime()));
 
 
-
 					try {
 						tableModelEvents.setDataVector(null, columnNamesEvents);
 						tableModelEvents.setColumnCount(3); // another column added to allocate ev objects
@@ -181,39 +180,25 @@ public class FindQuestionsGUI extends JDialog {
 		tableEvents.setModel(tableModelEvents);
 		tableEvents.getColumnModel().getColumn(0).setPreferredWidth(25);
 		tableEvents.getColumnModel().getColumn(1).setPreferredWidth(268);
-
-
+		tableEvents.getTableHeader().setReorderingAllowed(false);
+		tableEvents.getTableHeader().setResizingAllowed(false);
+		
 		scrollPaneQueries.setViewportView(tableQueries);
 		tableModelQueries = new NonEditableTableModel(null, columnNamesQueries);
 
 		tableQueries.setModel(tableModelQueries);
 		tableQueries.getColumnModel().getColumn(0).setPreferredWidth(25);
 		tableQueries.getColumnModel().getColumn(1).setPreferredWidth(268);
-
+		tableQueries.getTableHeader().setReorderingAllowed(false);
+		tableQueries.getTableHeader().setResizingAllowed(false);
+		
 		this.getContentPane().add(scrollPaneEvents, null);
 		this.getContentPane().add(scrollPaneQueries, null);
 
 	}
 
-	/**
-	 * Custom class to make the JTable cells non-editable
-	 * @author Julen
-	 */
-	public class NonEditableTableModel extends DefaultTableModel
-	{	private static final long serialVersionUID = 1L;
-
-		public NonEditableTableModel(Object[][] data, Object[] columnNames) {
-			super(data, columnNamesEvents);
-		}
-	
-		public boolean isCellEditable (int row, int column)
-		   {
-		       return false;
-		   }
-	}
 	
 	private void jButton2_actionPerformed(ActionEvent e) {
 		this.setVisible(false);
 	}
-
 }

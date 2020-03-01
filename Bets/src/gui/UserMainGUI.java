@@ -147,8 +147,7 @@ public class UserMainGUI extends JFrame {
 			jButtonQueryQueries.setText(ResourceBundle.getBundle("Etiquetas").getString("QueryQueries")); //$NON-NLS-1$ //$NON-NLS-2$
 			jButtonQueryQueries.addActionListener(new java.awt.event.ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
-					JDialog a = new FindQuestionsGUI();
-
+					JDialog a = new UserFindQuestionsGUI(user);
 					a.setVisible(true);
 				}
 			});
@@ -221,7 +220,7 @@ public class UserMainGUI extends JFrame {
 				public void actionPerformed(ActionEvent arg0) {
 					JFrame user = new MainGUI();
 					user.setVisible(true);
-					UserMainGUI.super.dispose();
+					dispose();
 				}
 			});
 			btnLogOut.setBounds(36, 36, 117, 25);

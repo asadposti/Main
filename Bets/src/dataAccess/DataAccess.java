@@ -1,6 +1,7 @@
 package dataAccess;
 
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
@@ -20,10 +21,12 @@ import javax.persistence.TypedQuery;
 
 import configuration.ConfigXML;
 import configuration.UtilDate;
+import domain.Bet;
 import domain.Event;
 import domain.Question;
 import domain.User;
 import exceptions.EventFinished;
+import exceptions.InsufficientCash;
 import exceptions.QuestionAlreadyExist;
 import exceptions.invalidID;
 import exceptions.invalidPW;
@@ -204,7 +207,6 @@ public class DataAccess  {
 							// @OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.PERSIST)
 			db.getTransaction().commit();
 			return q;
-		
 	}
 	
 	/**
@@ -281,12 +283,11 @@ public class DataAccess  {
 	 * @param ID			ID of the presumed user.
 	 * @param pw			password of the presumed user.
 	 * 
-	 * @return				int indicating privilegde level of the user( 0: Regular user, 1:Admin, -1:Invalid credentials)
+	 * @return				int indicating privilege level of the user( 0: Regular user, 1:Admin, -1:Invalid credentials)
 	 * @throws invalidID	exception thrown when no user entity with the input ID exists in the database.
 	 */
 	public User checkCredentials(String ID, String pw) throws invalidID, invalidPW {
 		User u = db.find(User.class, ID);
-
 		if(u == null) {
 			throw new invalidID("ID does not correspond to a registered user");
 		}
@@ -298,11 +299,105 @@ public class DataAccess  {
 		}
 	}
 	
+	/**
+	 * 
+	 * @param iD
+	 * @param password
+	 * @param name
+	 * @param surname
+	 * @param email
+	 * @return
+	 */
+	public List<User> retrieveUsersByCriteria(String searchtext, int filter) {
+		List<User> searchResult = new ArrayList<User>();
+		TypedQuery<User> query = null;
+		if(searchtext.equals("")) {
+			query = db.createQuery("SELECT u FROM User u", User.class);
+		}
+		else if(filter==0) {
+			query = db.createQuery("SELECT u FROM User u WHERE u.ID = \"" + searchtext +"\"", User.class);
+		}
+		else if(filter== 1) {
+			query = db.createQuery("SELECT u FROM User u WHERE u.name = \"" + searchtext +"\"", User.class);
+
+		}
+		else if(filter== 2) {
+			query = db.createQuery("SELECT u FROM User u WHERE u.surname = \"" + searchtext + "\"", User.class);
+		}
+		else if(filter==3) {
+			query = db.createQuery("SELECT u FROM User u WHERE u.email = \"" + searchtext + "\"", User.class);
+		}
+		searchResult = query.getResultList();
+		return searchResult;
+	}
+	
+	/**
+	 * 
+	 * @param iD
+	 * @return
+	 */
+	public void removeUser(String iD) {
+		db.getTransaction().begin();
+		TypedQuery<User> query = db.createQuery("DELETE FROM User u WHERE u.ID = \"" + iD + "\"", User.class);
+		query.executeUpdate();
+		db.getTransaction().commit();
+		System.out.println(iD + " has been deleted");
+	}
+	
+	/**
+	 * 
+	 * @param iD
+	 * @param name
+	 * @param surname
+	 * @param email
+	 * @param isAdmin
+	 */
+	public void updateUserInfo(String key, String iD, String name, String surname, String email, boolean isAdmin) throws invalidID{
+		
+		User u = db.find(User.class, iD);
+		//check if there is an existing user for the new ID
+		if(!key.equals(iD)) {
+			if(u != null) {
+				throw new invalidID();
+			}
+			else {
+				u = db.find(User.class, key);
+				db.getTransaction().begin();
+				TypedQuery<User> query = db.createQuery("DELETE FROM User u WHERE u.ID = \"" + key + "\"", User.class);
+				query.executeUpdate();
+				User w = new User(iD,u.getPassword(),name,surname,email,isAdmin);
+				db.persist(w);
+				db.getTransaction().commit();
+			}
+		}
+		else {
+			u = db.find(User.class, key);
+			db.getTransaction().begin();
+			u.setName(name);
+			u.setSurname(surname);
+			u.setEmail(email);
+			u.setAdmin(isAdmin);
+			db.getTransaction().commit();
+		}
+		System.out.println(iD + " has been updated");
+	}
+	
+	public void placeBet(Question q, User u, float amount){
+		db.getTransaction().begin();
+		u.placeBet(q, amount);
+		db.merge(u);
+		db.getTransaction().commit();
+		System.out.println("Bet placed sucessfully");
+	}
 	
 	public void close(){
 		db.close();
 		emf.close();
 		System.out.println("DataBase closed");
 	}
+
+	
+
+
 	
 }

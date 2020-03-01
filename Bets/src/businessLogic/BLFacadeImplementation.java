@@ -1,6 +1,7 @@
 package businessLogic;
 
 import java.util.Date;
+import java.util.List;
 import java.util.ResourceBundle;
 import java.util.Vector;
 
@@ -13,6 +14,7 @@ import domain.Question;
 import domain.User;
 import domain.Event;
 import exceptions.EventFinished;
+import exceptions.InsufficientCash;
 import exceptions.QuestionAlreadyExist;
 import exceptions.invalidID;
 import exceptions.invalidPW;
@@ -49,19 +51,21 @@ public class BLFacadeImplementation  implements BLFacade {
    public Question createQuestion(Event event, String question, float betMinimum) throws EventFinished, QuestionAlreadyExist{
 	   
 	    //The minimum bed must be greater than 0
-	    DataAccess dBManager=new DataAccess();
-		Question qry=null;
-		
-	    
-		if(new Date().compareTo(event.getEventDate())>0)
+	    DataAccess dBManager=new DataAccess();	    
+		if(new Date().compareTo(event.getEventDate())>0) {
+			dBManager.close();
 			throw new EventFinished(ResourceBundle.getBundle("Etiquetas").getString("ErrorEventHasFinished"));
-				
-		
-		 qry=dBManager.createQuestion(event,question,betMinimum);		
+		}	
+		try {
+			Question qry=dBManager.createQuestion(event,question,betMinimum);	
+			dBManager.close();
+			return qry;
+		}
+		catch(QuestionAlreadyExist q) {
+			dBManager.close();
+			throw new QuestionAlreadyExist(q.getMessage());
+		}
 
-		dBManager.close();
-		
-		return qry;
    };
 	
 	/**
@@ -147,6 +151,44 @@ public class BLFacadeImplementation  implements BLFacade {
 	}
 
 	/**
+	 * 
+	 */
+	@Override
+	public List<User> searchByCriteria(String searchtext, int filter) {
+		DataAccess dbManager = new DataAccess();
+		List<User> searchResult = dbManager.retrieveUsersByCriteria(searchtext, filter);
+		dbManager.close();
+		return searchResult;
+	}
+	
+	/**
+	 * 
+	 */
+	@Override
+	public void removeUser(String ID) {
+		DataAccess dbManager = new DataAccess();
+		dbManager.removeUser(ID);
+		dbManager.close();
+	}
+	
+	/**
+	 * 
+	 */
+	@Override
+	public void updateUserInfo(String key, String ID, String name, String surname, String email, boolean isAdmin) throws invalidID{
+		DataAccess dbManager = new DataAccess();
+		try {	
+			dbManager.updateUserInfo(key, ID,name,surname,email,isAdmin);
+			dbManager.close();
+		}
+		catch(invalidID i) {
+			dbManager.close();
+			throw new invalidID();
+		}
+			
+	}
+	
+	/**
 	 * This method invokes the data access to initialize the database with some events and questions.
 	 * It is invoked only when the option "initialize" is declared in the tag dataBaseOpenMode of resources/config.xml file
 	 */	
@@ -156,6 +198,29 @@ public class BLFacadeImplementation  implements BLFacade {
 		dBManager.initializeDB();
 		dBManager.close();
 	}
+
+
+	@Override
+	public void placeBet(Question q, User u, float amount) throws InsufficientCash{
+		if(amount > u.getCash()) {
+			throw new InsufficientCash();
+		}
+		else {
+			DataAccess dbManager=new DataAccess();
+			dbManager.placeBet(q, u, amount);
+			dbManager.close();
+		}
+		
+	}
+
+
+
+
+
+
+
+
+
 
 }
 
