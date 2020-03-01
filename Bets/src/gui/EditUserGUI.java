@@ -252,7 +252,7 @@ public class EditUserGUI extends JDialog {
 	public String[] newData() {
 		String status;
 		if(rdbtnAdmin.isSelected()) {
-			status = "Admin";
+			status = "Admin.";
 		}
 		else {
 			status = "User";
