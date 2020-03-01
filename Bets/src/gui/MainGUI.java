@@ -245,6 +245,7 @@ public class MainGUI extends JFrame {
 				public void actionPerformed(ActionEvent arg0) {
 					JDialog login = new RegisterGUI(false);
 					login.setVisible(true);
+					MainGUI.super.dispose();
 				}
 			});
 		}
