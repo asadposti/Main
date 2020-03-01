@@ -83,7 +83,7 @@ public class UserMainGUI extends JFrame {
 	 */
 	private void initialize() {
 		// this.setSize(271, 295);
-		this.setBounds(600, 200, 495, 290);
+		this.setBounds(600, 200, 495, 404);
 		this.setContentPane(getJContentPane());
 		this.setTitle(ResourceBundle.getBundle("Etiquetas").getString("MainTitle"));
 	}

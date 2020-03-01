@@ -50,7 +50,7 @@ public class User {
 		this.bets = new ArrayList<Bet>();
 		this.cash = 50;         //placeholder value of 50 euros for testing purposes before credit cards etc are implemented.
 	}
-	
+
 
 	public String getID() {
 		return ID;

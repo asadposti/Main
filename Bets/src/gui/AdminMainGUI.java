@@ -1,5 +1,7 @@
 package gui;
 
+import javax.imageio.ImageIO;
+
 /**
  * @author Software Engineering teachers
  */
@@ -16,6 +18,8 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.io.File;
+import java.io.IOException;
 import java.util.Locale;
 import java.util.ResourceBundle;
 import java.util.Vector;
@@ -49,12 +53,18 @@ public class AdminMainGUI extends JFrame {
 	public static void setBussinessLogic (BLFacade afi){
 		appFacadeInterface=afi;
 	}
-	protected JLabel jLabelSelectOption;
+	protected JLabel jLabelTitle;
 	private JRadioButton rdbtnNewRadioButton;
 	private JRadioButton rdbtnNewRadioButton_1;
 	private JRadioButton rdbtnNewRadioButton_2;
 	private JPanel panel;
 	private final ButtonGroup buttonGroup = new ButtonGroup();
+	private JLabel logoLabel;
+	private JLabel selectOptLabel;
+	private JLabel lblAccount;
+	private JLabel lblCash;
+	private JLabel IDLabel;
+	private JLabel incomeLabel;
 
 	/**
 	 * This is the default constructor
@@ -62,6 +72,8 @@ public class AdminMainGUI extends JFrame {
 	public AdminMainGUI(User u) {
 		super();
 		this.user = u;
+		getIDLabel().setText(u.getID());
+		getIncomeLabel().setText(u.getCash() + "$");
 		addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowClosing(WindowEvent e) {
@@ -88,7 +100,7 @@ public class AdminMainGUI extends JFrame {
 	 */
 	private void initialize() {
 		// this.setSize(271, 295);
-		this.setBounds(600, 200, 495, 290);
+		this.setBounds(600, 200, 509, 486);
 		this.setContentPane(getJContentPane());
 		this.setTitle(ResourceBundle.getBundle("Etiquetas").getString("MainTitle"));
 	}
@@ -102,43 +114,21 @@ public class AdminMainGUI extends JFrame {
 		if (jContentPane == null) {
 			jContentPane = new JPanel();
 			
+			JLabel logoLabel = null;
 			
-			GroupLayout gl_jContentPane = new GroupLayout(jContentPane);
-			gl_jContentPane.setHorizontalGroup(
-				gl_jContentPane.createParallelGroup(Alignment.LEADING)
-					.addComponent(getLblNewLabel(), GroupLayout.PREFERRED_SIZE, 479, GroupLayout.PREFERRED_SIZE)
-					.addComponent(getPanel(), GroupLayout.PREFERRED_SIZE, 479, GroupLayout.PREFERRED_SIZE)
-					.addGroup(gl_jContentPane.createSequentialGroup()
-						.addContainerGap(13, Short.MAX_VALUE)
-						.addGroup(gl_jContentPane.createParallelGroup(Alignment.TRAILING)
-							.addComponent(getBoton4(), GroupLayout.PREFERRED_SIZE, 223, GroupLayout.PREFERRED_SIZE)
-							.addComponent(getBoton5(), GroupLayout.PREFERRED_SIZE, 223, GroupLayout.PREFERRED_SIZE))
-						.addGroup(gl_jContentPane.createParallelGroup(Alignment.LEADING)
-							.addGroup(gl_jContentPane.createSequentialGroup()
-								.addGap(10)
-								.addComponent(getBoton2(), GroupLayout.DEFAULT_SIZE, 223, Short.MAX_VALUE))
-							.addGroup(gl_jContentPane.createSequentialGroup()
-								.addPreferredGap(ComponentPlacement.RELATED)
-								.addComponent(getBoton3(), GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-						.addContainerGap())
-			);
-			gl_jContentPane.setVerticalGroup(
-				gl_jContentPane.createParallelGroup(Alignment.LEADING)
-					.addGroup(gl_jContentPane.createSequentialGroup()
-						.addGap(1)
-						.addComponent(getLblNewLabel(), GroupLayout.PREFERRED_SIZE, 62, GroupLayout.PREFERRED_SIZE)
-						.addPreferredGap(ComponentPlacement.RELATED)
-						.addGroup(gl_jContentPane.createParallelGroup(Alignment.TRAILING)
-							.addComponent(getBoton4(), GroupLayout.PREFERRED_SIZE, 62, GroupLayout.PREFERRED_SIZE)
-							.addComponent(getBoton3(), GroupLayout.PREFERRED_SIZE, 62, GroupLayout.PREFERRED_SIZE))
-						.addPreferredGap(ComponentPlacement.UNRELATED)
-						.addGroup(gl_jContentPane.createParallelGroup(Alignment.BASELINE)
-							.addComponent(getBoton5(), GroupLayout.PREFERRED_SIZE, 62, GroupLayout.PREFERRED_SIZE)
-							.addComponent(getBoton2(), GroupLayout.PREFERRED_SIZE, 62, GroupLayout.PREFERRED_SIZE))
-						.addPreferredGap(ComponentPlacement.RELATED)
-						.addComponent(getPanel(), GroupLayout.PREFERRED_SIZE, 62, GroupLayout.PREFERRED_SIZE))
-			);
-			jContentPane.setLayout(gl_jContentPane);
+			jContentPane.setLayout(null);
+			jContentPane.add(getPanel());
+			jContentPane.add(getBoton5());
+			jContentPane.add(getBoton4());
+			jContentPane.add(getBoton3());
+			jContentPane.add(getBoton2());
+			jContentPane.add(getjLabelTitle());
+			jContentPane.add(getLogoLabel());
+			jContentPane.add(getSelectOptLabel());
+			jContentPane.add(getLblAccount());
+			jContentPane.add(getLblCash());
+			jContentPane.add(getIDLabel());
+			jContentPane.add(getIncomeLabel());
 		}
 		return jContentPane;
 	}
@@ -152,6 +142,7 @@ public class AdminMainGUI extends JFrame {
 	private JButton getBoton2() {
 		if (JButtonCheckProfile == null) {
 			JButtonCheckProfile = new JButton();
+			JButtonCheckProfile.setBounds(255, 295, 228, 62);
 			JButtonCheckProfile.setText(ResourceBundle.getBundle("Etiquetas").getString("CheckProfile")); //$NON-NLS-1$ //$NON-NLS-2$
 			JButtonCheckProfile.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
@@ -182,6 +173,7 @@ public class AdminMainGUI extends JFrame {
 	private JButton getBoton3() {
 		if (jButtonQueryQueries == null) {
 			jButtonQueryQueries = new JButton();
+			jButtonQueryQueries.setBounds(255, 222, 228, 62);
 			jButtonQueryQueries.setText(ResourceBundle.getBundle("Etiquetas").getString("QueryQueries")); //$NON-NLS-1$ //$NON-NLS-2$
 			jButtonQueryQueries.setEnabled(true);
 			jButtonQueryQueries.addActionListener(new java.awt.event.ActionListener() {
@@ -203,6 +195,7 @@ public class AdminMainGUI extends JFrame {
 	private JButton getBoton4() {
 		if (JButtonCreateQueries == null) {
 			JButtonCreateQueries = new JButton();
+			JButtonCreateQueries.setBounds(22, 222, 223, 62);
 			JButtonCreateQueries.setText(ResourceBundle.getBundle("Etiquetas").getString("CreateQuery")); //$NON-NLS-1$ //$NON-NLS-2$
 			JButtonCreateQueries.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
@@ -233,6 +226,7 @@ public class AdminMainGUI extends JFrame {
 	private JButton getBoton5() {
 		if (JButtonManageUsers == null) {
 			JButtonManageUsers = new JButton();
+			JButtonManageUsers.setBounds(22, 295, 223, 62);
 			JButtonManageUsers.setText(ResourceBundle.getBundle("Etiquetas").getString("ManageUsers")); //$NON-NLS-1$ //$NON-NLS-2$
 			JButtonManageUsers.addActionListener(new java.awt.event.ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
@@ -248,14 +242,15 @@ public class AdminMainGUI extends JFrame {
 
 
 
-	private JLabel getLblNewLabel() {
-		if (jLabelSelectOption == null) {
-			jLabelSelectOption = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("SelectOption"));
-			jLabelSelectOption.setFont(new Font("Tahoma", Font.BOLD, 13));
-			jLabelSelectOption.setForeground(Color.BLACK);
-			jLabelSelectOption.setHorizontalAlignment(SwingConstants.CENTER);
+	private JLabel getjLabelTitle() {
+		if (jLabelTitle == null) {
+			jLabelTitle = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("BetAndRuin")); //$NON-NLS-1$ //$NON-NLS-2$
+			jLabelTitle.setBounds(22, 29, 322, 62);
+			jLabelTitle.setFont(new Font("Source Sans Pro Black", Font.BOLD, 25));
+			jLabelTitle.setForeground(new Color(0, 0, 0));
+			jLabelTitle.setHorizontalAlignment(SwingConstants.CENTER);
 		}
-		return jLabelSelectOption;
+		return jLabelTitle;
 	}
 	private JRadioButton getRdbtnNewRadioButton() {
 		if (rdbtnNewRadioButton == null) {
@@ -323,6 +318,7 @@ public class AdminMainGUI extends JFrame {
 	private JPanel getPanel() {
 		if (panel == null) {
 			panel = new JPanel();
+			panel.setBounds(22, 378, 457, 62);
 			panel.add(getRdbtnNewRadioButton_1());
 			panel.add(getRdbtnNewRadioButton_2());
 			panel.add(getRdbtnNewRadioButton());
@@ -332,10 +328,58 @@ public class AdminMainGUI extends JFrame {
 	}
 
 	private void redibujar() {
-		jLabelSelectOption.setText(ResourceBundle.getBundle("Etiquetas").getString("SelectOption"));
+		jLabelTitle.setText(ResourceBundle.getBundle("Etiquetas").getString("SelectOption"));
 		jButtonQueryQueries.setText(ResourceBundle.getBundle("Etiquetas").getString("QueryQueries"));
 		JButtonCheckProfile.setText(ResourceBundle.getBundle("Etiquetas").getString("CreateQuery"));
 		this.setTitle(ResourceBundle.getBundle("Etiquetas").getString("MainTitle"));
+	}
+	private JLabel getLogoLabel() {
+		if (logoLabel == null) {
+			try {
+				logoLabel = new JLabel(new ImageIcon(ImageIO.read(new File("images/beticon.png"))));
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			logoLabel.setBounds(241, -16, 199, 160);
+		}
+		return logoLabel;
+	}
+	private JLabel getSelectOptLabel() {
+		if (selectOptLabel == null) {
+			selectOptLabel = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("SelectOption")); //$NON-NLS-1$ //$NON-NLS-2$
+			selectOptLabel.setHorizontalAlignment(SwingConstants.CENTER);
+			selectOptLabel.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 16));
+			selectOptLabel.setBounds(170, 182, 146, 24);
+		}
+		return selectOptLabel;
+	}
+	private JLabel getLblAccount() {
+		if (lblAccount == null) {
+			lblAccount = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("AdminMainGUI.lblAccount.text")); //$NON-NLS-1$ //$NON-NLS-2$
+			lblAccount.setBounds(32, 130, 56, 14);
+		}
+		return lblAccount;
+	}
+	private JLabel getLblCash() {
+		if (lblCash == null) {
+			lblCash = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("AdminMainGUI.lblAvailableIncome.text")); //$NON-NLS-1$ //$NON-NLS-2$
+			lblCash.setBounds(32, 155, 48, 14);
+		}
+		return lblCash;
+	}
+	private JLabel getIDLabel() {
+		if (IDLabel == null) {
+			IDLabel = new JLabel(); //$NON-NLS-1$ //$NON-NLS-2$
+			IDLabel.setBounds(90, 130, 141, 14);
+		}
+		return IDLabel;
+	}
+	private JLabel getIncomeLabel() {
+		if (incomeLabel == null) {
+			incomeLabel = new JLabel(); //$NON-NLS-1$ //$NON-NLS-2$
+			incomeLabel.setBounds(90, 157, 141, 14);
+		}
+		return incomeLabel;
 	}
 } // @jve:decl-index=0:visual-constraint="0,0"
 
