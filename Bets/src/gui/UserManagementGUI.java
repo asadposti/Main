@@ -198,8 +198,8 @@ public class UserManagementGUI extends JDialog{
 		JPanel panel = new JPanel();
 		contentPane.add(panel, BorderLayout.CENTER);
 		GridBagLayout gbl_panel = new GridBagLayout();
-		gbl_panel.columnWidths = new int[]{30, 30, 30, 30, 30, 30, 20, 70, 47, 70, 20, 30, 60, 66, 20, 20, 20, 0};
-		gbl_panel.rowHeights = new int[]{0, 20, 20, 31, 20, 0, 30, 30, 30, 30, 20, 31, 20, 0};
+		gbl_panel.columnWidths = new int[]{30, 30, 30, 30, 30, 0, 20, 70, 47, 70, 20, 30, 60, 66, 20, 20, 20, 0};
+		gbl_panel.rowHeights = new int[]{0, 20, 20, 0, 20, 0, 30, 30, 30, 30, 20, 0, 20, 0};
 		gbl_panel.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		gbl_panel.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		panel.setLayout(gbl_panel);
@@ -250,7 +250,7 @@ public class UserManagementGUI extends JDialog{
 
 		GridBagConstraints gbc_filterComboBox = new GridBagConstraints();
 		gbc_filterComboBox.insets = new Insets(0, 0, 5, 5);
-		gbc_filterComboBox.fill = GridBagConstraints.BOTH;
+		gbc_filterComboBox.fill = GridBagConstraints.HORIZONTAL;
 		gbc_filterComboBox.gridx = 8;
 		gbc_filterComboBox.gridy = 3;
 

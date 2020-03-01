@@ -199,7 +199,6 @@ public class EditUserGUI extends JDialog {
 		panel.add(rdbtnAdmin, gbc_rdbtnAdmin);
 
 		
-		
 		JButton btnSave = new JButton("Save changes");
 		btnSave.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -236,6 +235,7 @@ public class EditUserGUI extends JDialog {
 		JButton btnCancel = new JButton("Cancel");
 		btnCancel.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				idField.setText(ID);
 				dispose();
 			}
 		});

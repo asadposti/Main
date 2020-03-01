@@ -107,7 +107,7 @@ public class User {
 	
 	public String statusToString() {
 		if(this.isAdmin) {
-			return("Admin");
+			return("Admin.");
 		}
 		else {
 			return("User");
